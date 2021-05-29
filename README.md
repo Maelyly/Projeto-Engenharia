@@ -1,5 +1,5 @@
 # Projeto-Engenharia
-Nome: Gerenciador de despesas com compras em supermercado
+Nome: Gerenciador de despesas com compras em supermercado\n
 Descrição: Joana relatou que possui problemas para gerenciar e calcular o valor final das
 compras realizadas em supermercado, por isso ela solicitou esse módulo de forma que ela
 pudesse a medida que fosse colocando as compras no carrinho ela pudesse adicionar os itens
