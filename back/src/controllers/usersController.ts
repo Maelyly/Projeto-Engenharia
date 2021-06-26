@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { IUserData } from '../interfaces/User';
 import { User } from '../entities/User';
-import { UsersBody } from '../body/usersBody';
+import { UsersBody } from '../body/UsersBody';
 
 
 class UsersController {
