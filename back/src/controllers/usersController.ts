@@ -23,6 +23,15 @@ class UsersController {
 		
 	}
 
+	async list(request: Request, response: Response): Promise<Response>{
+		const usersbody = new UsersBody();
+		let x = 0;
+		while(x<1000000000){
+			x++;
+		}
+		return response.json(await usersbody.listUsers());
+	}
+
 	
 }
 

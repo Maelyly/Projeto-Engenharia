@@ -14,7 +14,7 @@ routes.get('/', (request, response) => {
 });
 
 routes.post('/users', usersController.create);
-
+routes.get('/users', usersController.list);
 
 
 export { routes };

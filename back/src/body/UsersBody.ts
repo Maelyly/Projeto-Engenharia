@@ -37,6 +37,10 @@ class UsersBody {
 		return user;
 	}
 
+	async listUsers(){
+		return await this.usersRepository.query(`SELECT * FROM users`);
+	}
+
 	async findByEmail(email: string) {
 		return this.usersRepository.findOne({
 			email,
