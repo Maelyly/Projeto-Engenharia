@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { IProductData } from '../interfaces/Product';
 import { Product } from '../entities/Product';
-import { ProductsBody } from '../body/ProductBody';
+import { ProductsBody } from '../body/ProductsBody';
 
 
 class ProductsController {
