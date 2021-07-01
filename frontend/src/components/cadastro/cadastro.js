@@ -1,41 +1,21 @@
-import React from 'react';
+import React,{useEffect,useState} from 'react';
 import './cadastro.css';
 import {Link } from "react-router-dom";
+import CadastroForm from './cadastroForm';
+//import {Us} from "./Users/us";
+
 export default function Cadastro() {
-  return(
+     
+ 
+ 
+    return(
     <div>
 
         <h2 className= "subTitulo-Cadastro">
             Crie sua conta
         </h2>
-
-        <form className = "box">
-        <label>
-            <p className = "nome-cadastro">Digite seu nome</p>
-            <input type="text"  className= "posicaoNomeCadastro" />
-        </label>
-        <label>
-            <p className = "email-cadastro">Digite seu email</p>
-            <input type="email" className= "posicaoEmailCadastro" />
-        </label>
-        <label>
-            <p className = "senha-cadastro">Crie sua senha</p>
-            <input type="password" className= "posicaoSenhaCadastro" />
-        </label>
-        <label>
-            <p className = "senha-cadastro2">Confirme sua senha</p>
-            <input type="password" className= "posicaoSenhaCadastro2" />
-        </label>
-        <div>
-            <Link to= "/login">
-            <button  type="submit" className = "posicaoBotaoCancelar" >Cancelar</button>
-            </Link>
-            <Link to= "/home">
-            <button type="submit" className = "posicaoBotaoCriar" >Criar</button>
-            </Link>
-        </div>
-        </form>
-
+        <CadastroForm/>
+        
         <div className="login-asth">
             <h1 className= "titulo">
                 Compras
