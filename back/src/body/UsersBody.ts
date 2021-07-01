@@ -46,6 +46,11 @@ class UsersBody {
 			email,
 		});
 	}
+	async findByUserName(user_name: string) {
+		return this.usersRepository.findOne({
+			user_name,
+		});
+	}
 }
 
 export { UsersBody };

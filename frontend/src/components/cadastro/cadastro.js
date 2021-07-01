@@ -1,7 +1,13 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './cadastro.css';
 import {Link } from "react-router-dom";
+import axios from "axios";
+
 export default function Cadastro() {
+ const [user] = useState(null);
+ useEffect(async()=>{
+    await axios.post(("http://localhost:8000/users/"+user));
+    })
   return(
     <div>
 
