@@ -1,6 +1,9 @@
 import express from 'express';
 import { routes } from './routes';
 import cors from "cors";
+import * as env from 'dotenv';
+
+env.config({ path: '../.env' });
 
 const app = express();
 

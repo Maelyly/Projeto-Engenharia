@@ -32,6 +32,7 @@
   }
   
   .nome-cadastro {
+      width: 100px;
       color: #ffbe59;
       text-align: center;
       font-family: "Fredoka One";
@@ -41,9 +42,20 @@
       position: absolute;left: 1000px; top: 150px;
      
     }
-  
+
+  .user_name-cadastro{
+      width: 300px;
+      color: #ffbe59;
+      text-align: center;
+      font-family: "Fredoka One";
+      font-size: 26px;
+      letter-spacing: 0px;
+      line-height: 1;
+      position: absolute;left: 1000px; top: 150px;
+  }
     
     .email-cadastro {
+      width: 300px;
       color: #ffbe59;
       text-align: center;
       font-family: "Fredoka One";
@@ -54,6 +66,7 @@
     }
 
     .senha-cadastro {
+        width: 300px;
         color: #ffbe59;
         text-align: center;
         font-family: "Fredoka One";
@@ -65,6 +78,7 @@
 
 
       .senha-cadastro2 {
+        width: 300px;
         color: #ffbe59;
         text-align: center;
         font-family: "Fredoka One";
@@ -107,7 +121,9 @@
     .posicaoNomeCadastro{
       position: absolute;left: 1000px; top: 205px;
     }
-
+    .posicaoUser_name{
+      position: absolute; left: 200px; top: 500px;
+    }
     .posicaoSenhaCadastro{
         position: absolute;left: 1000px; top: 353px;
     }

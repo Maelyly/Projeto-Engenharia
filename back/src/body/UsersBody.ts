@@ -1,6 +1,6 @@
 import { getCustomRepository, Repository } from 'typeorm';
 import { User } from '../entities/User';
-import { UsersRepository } from '../repositories/UserRepository';
+import { UsersRepository } from '../repositories/UsersRepository';
 import { IUserData } from '../interfaces/User';
 import { hashSync, genSaltSync } from 'bcrypt';
 

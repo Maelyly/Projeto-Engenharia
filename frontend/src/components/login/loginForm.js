@@ -2,6 +2,7 @@ import React,{useEffect,useState} from 'react';
 import './login.css';
 import {Link } from "react-router-dom";
 import axios from 'axios';
+import api from '../../services/api';
 
 export default function LoginForm(){
     const [email,setEmail] = useState('');
@@ -17,7 +18,7 @@ export default function LoginForm(){
         setSenha(event.target.value);
     }
 
-    const handleSubmit = (event) =>{
+    /*const handleSubmit = (event) =>{
         event.preventDefault();
 
         const userData = {
@@ -25,22 +26,33 @@ export default function LoginForm(){
             senha : senha,
         }
         console.log(userData);
+    }*/
+
+    async function handleSubmit(event) {
+        event.preventDefault();
+
+        const userData = {
+            user_name : email,
+            password : senha,
+        }
+        console.log(userData);
+        const response = await api.post('auth/login', userData);
+        console.log('Response:', response.userData);
+        console.log(response)
     }
 
     return(
         <form className = "email-box" onSubmit= {handleSubmit}>
         <label>
             <p className = "email-label">Email</p>
-            <input type="email"  className= "posicaoEmail" onChange= {changeHandlerEmail}/>
+            <input type="text"  className= "posicaoEmail" onChange= {changeHandlerEmail}/>
         </label>
         <label>
             <p className = "senha-label">Senha</p>
             <input type="password" className= "posicaoSenha" onChange= {changeHandlerSenha}/>
         </label>
         <div>
-            <Link to= "/home">
             <button  type="submit" className = "posicaoBotaoEntrar" >Entrar</button>
-            </Link>
             <Link to= "/cadastro">
             <button className = "posicaoBotaoCadastrar" >Cadastrar</button>
             </Link>

@@ -6,7 +6,7 @@ import { UsersBody } from '../body/UsersBody';
 
 class UsersController {
 	async create(request: Request, response: Response): Promise<Response> {
-		const { email, name, password, user_name }: IUserData = request.body;
+		const { name, user_name, email, password }: IUserData = request.body;
 
 		const usersbody = new UsersBody();
 
