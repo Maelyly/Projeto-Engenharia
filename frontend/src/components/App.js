@@ -3,7 +3,7 @@ import { useState } from 'react';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import Home from './home/home';
 import Us from './Users/us'
-import Cadastro from './cadastro/cadastro';
+import Register from './register/register';
 import Login from './login/login';
 
 function App() {
@@ -20,8 +20,8 @@ function App() {
           <Route path="/home">
             <Home />
           </Route>
-          <Route path="/cadastro">
-            <Cadastro />
+          <Route path="/register">
+            <Register />
           </Route>
           <Route path="/login">
             <Login />

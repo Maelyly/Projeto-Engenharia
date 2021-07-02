@@ -1,4 +1,4 @@
-.subTitulo-Cadastro{
+.subTitle-register{
     color: #ffbe59;
     width: 300px;
     text-align: center;
@@ -9,7 +9,7 @@
     position: absolute;left: 1020px; top: 0px;
   }
   
-  .titulo{
+  .title{
       color: #ffbe59;
       width: 450px;
       text-align: left;
@@ -31,7 +31,7 @@
     position: absolute;left: 315px; top: 350px;
   }
   
-  .nome-cadastro {
+  .name-register {
       color: #ffbe59;
       text-align: center;
       font-family: "Fredoka One";
@@ -43,7 +43,7 @@
     }
   
     
-    .email-cadastro {
+    .email-register {
       color: #ffbe59;
       text-align: center;
       font-family: "Fredoka One";
@@ -53,7 +53,7 @@
       position: absolute;left: 1000px; top: 220px;
     }
 
-    .senha-cadastro {
+    .password-register {
         color: #ffbe59;
         text-align: center;
         font-family: "Fredoka One";
@@ -64,7 +64,7 @@
       }
 
 
-      .senha-cadastro2 {
+      .password-register2 {
         color: #ffbe59;
         text-align: center;
         font-family: "Fredoka One";
@@ -101,25 +101,25 @@
       background-color: #ffffff;
     }
   
-    .posicaoEmailCadastro{
+    .positionEmailRegister{
       position: absolute;left: 1000px; top: 280px;
     }
-    .posicaoNomeCadastro{
+    .positionNameRegister{
       position: absolute;left: 1000px; top: 205px;
     }
 
-    .posicaoSenhaCadastro{
+    .positionPasswordRegister{
         position: absolute;left: 1000px; top: 353px;
     }
 
-    .posicaoSenhaCadastro2{
+    .positionPasswordRegister2{
         position: absolute;left: 1000px; top: 433px;
     }
   
-    .posicaoBotaoCancelar{
+    .positionButtonCancel{
       position: absolute;left: 1000px; top: 502px;
     }
-    .posicaoBotaoCriar{
+    .positionButtonCreate{
       position: absolute;left: 1200px; top: 502px;
     }
   

@@ -6,7 +6,7 @@
     
 }
 
-.subTitulo{
+.subTitle{
   color: #ffbe59;
   width: 300px;
   text-align: center;
@@ -17,7 +17,7 @@
   position: absolute;left: 1020px; top: 100px;
 }
 
-.titulo{
+.title{
     color: #ffbe59;
     width: 450px;
     text-align: left;
@@ -62,7 +62,7 @@
     background-color: #ffcaca;
   }
 
-  .senha-label {
+  .password-label {
     color: #ffbe59;
     text-align: center;
     font-family: "Fredoka One";
@@ -97,17 +97,17 @@
     background-color: #ffffff;
   }
 
-  .posicaoEmail{
+  .positionEmail{
     position: absolute;left: 1000px; top: 310px;
   }
-  .posicaoSenha{
+  .positionPassword{
     position: absolute;left: 1000px; top: 403px;
   }
 
-  .posicaoBotaoEntrar{
+  .positionButtonEnter{
     position: absolute;left: 1000px; top: 502px;
   }
-  .posicaoBotaoCadastrar{
+  .positionButtonRegister{
     position: absolute;left: 1200px; top: 502px;
   }
 
