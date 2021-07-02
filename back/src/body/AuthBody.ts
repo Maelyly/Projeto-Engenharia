@@ -2,10 +2,10 @@ import { getCustomRepository, Repository } from "typeorm";
 import { User } from '../entities/User'
 import { UsersRepository } from '../repositories/UsersRepository';
 import { compareSync } from 'bcrypt';
-//import { config as dotenvConfig } from "dotenv";
 import *  as jwt from 'jsonwebtoken';
 import { json } from 'express';
-//dotenvConfig()
+
+
 
 class AuthBody {
     private usersRepository: Repository<User>;

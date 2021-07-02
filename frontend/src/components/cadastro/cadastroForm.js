@@ -2,9 +2,11 @@ import React,{useEffect,useState} from 'react';
 import './cadastro.css';
 import {Link } from "react-router-dom";
 import axios from 'axios';
+import api from '../../services/api';
 
 export default function CadastroForm(){
     const [nome,setNome] = useState('');
+    const [user_name,setUser_name] = useState('');
     const [email,setEmail] = useState('');
     const [senha,setSenha] = useState('');
     const [senha2,setSenha2] = useState('');
@@ -12,6 +14,10 @@ export default function CadastroForm(){
 
     const changeHandlerNome = (event) => {
         setNome(event.target.value);
+    }
+
+    const changeHandlerUser_Name = (event) => {
+        setUser_name(event.target.value);
     }
 
     const changeHandlerEmail = (event) => {
@@ -26,20 +32,23 @@ export default function CadastroForm(){
         setSenha2(event.target.value);
     }
 
-    const handleSubmit = (event) =>{
+    async function handleSubmit(event){
         event.preventDefault();
 
         const userData = {
-            nome : nome,
+            name : nome,
+            user_name : user_name,
             email : email,
-            senha : senha,
+            password : senha,
         }
+
         console.log(userData);
         if(senha != senha2){
             alert('senhas diferentes');
         }
         else{
-            axios.post(userData,apiUrl);
+            const response = await api.post('create/user', userData);
+            console.log('Response:', response.userData);
         }
     }
 
@@ -48,6 +57,10 @@ export default function CadastroForm(){
         <label>
             <p className = "nome-cadastro">Digite seu nome</p>
             <input type="text"  className= "posicaoNomeCadastro" onChange = {changeHandlerNome} />
+        </label>
+        <label>
+            <p className = "user_name-cadastro">Digite seu nome de usuario</p>
+            <input type="text"  className= "posicaoUser_name" onChange = {changeHandlerUser_Name} />
         </label>
         <label>
             <p className = "email-cadastro">Digite seu email</p>
