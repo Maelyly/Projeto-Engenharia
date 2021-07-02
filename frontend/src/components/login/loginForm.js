@@ -38,9 +38,7 @@ export default function LoginForm(){
             <input type="password" className= "posicaoSenha" onChange= {changeHandlerSenha}/>
         </label>
         <div>
-            <Link to= "/home">
             <button  type="submit" className = "posicaoBotaoEntrar" >Entrar</button>
-            </Link>
             <Link to= "/cadastro">
             <button className = "posicaoBotaoCadastrar" >Cadastrar</button>
             </Link>

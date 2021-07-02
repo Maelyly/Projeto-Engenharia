@@ -1,11 +1,13 @@
 import { Router } from 'express';
 import { UsersController } from './controllers/usersController';
+//import { AuthController } from '.controllers/aut'
 
 import './database';
 
 const routes = Router();
 
 const usersController = new UsersController();
+//const authController = new AuthController();
 
 routes.get('/', (request, response) => {
 	return response.json({
