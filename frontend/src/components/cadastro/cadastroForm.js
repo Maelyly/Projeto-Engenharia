@@ -35,11 +35,11 @@ export default function CadastroForm(){
             senha : senha,
         }
         console.log(userData);
-        if(senha != senha2){
+        if(senha !== senha2){
             alert('senhas diferentes');
         }
-        else{
-            axios.post(userData,apiUrl);
+        else{    
+            axios.post(apiUrl,userData);
         }
     }
 
