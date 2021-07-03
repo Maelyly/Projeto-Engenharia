@@ -1,7 +1,7 @@
 import React from 'react';
 import './login.css';
-import {Link } from "react-router-dom";
 import LoginForm from './loginForm';
+import logo from './../../images/logo/logo.png';
 export default function Login() {
   return(
     <div>
@@ -9,6 +9,7 @@ export default function Login() {
         <h2 className= "subTitulo">
             Entre na sua conta
         </h2>
+        <img src={logo} alt="logo" className="Logo" />
 
         <LoginForm/>
 
