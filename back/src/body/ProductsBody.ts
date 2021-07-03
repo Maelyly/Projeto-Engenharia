@@ -15,13 +15,13 @@ class ProductsBody {
 	
 
 	async create(productData: IProductData) {
-		const {  name,date_inclusion,date_modification } = productData;
+		const {  name } = productData;
 
 		const productExists = await this.findByProductName(name);
 
 		if (productExists) return false;
 
-		const product = this.productsRepository.create({name,date_inclusion,date_modification});
+		const product = this.productsRepository.create({name});
 
 		await this.productsRepository.save(product);
 
@@ -29,7 +29,7 @@ class ProductsBody {
 	}
 
 	async listProducts(){
-		return await this.productsRepository.query(`SELECT * FROM items`);
+		return await this.productsRepository.query(`SELECT * FROM product`);
 	}
 
 	async findByProductName(productname: string) {

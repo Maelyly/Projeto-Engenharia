@@ -1,4 +1,4 @@
-import { Entity, PrimaryColumn, Column } from 'typeorm';
+import { Entity, PrimaryColumn, Column, CreateDateColumn, UpdateDateColumn } from 'typeorm';
 import { v4 as uuid } from 'uuid';
 
 @Entity('product')
@@ -9,10 +9,10 @@ class Product {
    @Column()
    name: string;
 
-   @Column()
+   @CreateDateColumn()
    date_inclusion: Date;
 
-   @Column()
+   @UpdateDateColumn()
    date_modification: Date;
 
 
