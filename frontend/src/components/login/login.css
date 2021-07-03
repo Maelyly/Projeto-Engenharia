@@ -1,0 +1,145 @@
+.login-asth {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    
+    
+}
+
+.subTitle{
+  color: #ffbe59;
+  width: 300px;
+  text-align: center;
+  font-family: "Fredoka One";
+  font-size: 46px;
+  letter-spacing: 0px;
+  line-height: 1;
+  position: absolute;left: 1020px; top: 100px;
+}
+
+.title{
+    color: #ffbe59;
+    width: 450px;
+    text-align: left;
+    font-family: "Fredoka One";
+    font-size: 80px;
+    letter-spacing: 0px;
+    line-height: 1;
+    position: absolute;left: 315px; top: 149px;
+}
+
+.slogan{
+  color: #ffbe59;
+  width: 500px;
+  text-align: left;
+  font-family: "Fredoka One";
+  font-size: 32px;
+  letter-spacing: 0px;
+  line-height: 1;
+  position: absolute;left: 315px; top: 350px;
+}
+
+.email-label {
+    color: #ffbe59;
+    text-align: center;
+    font-family: "Fredoka One";
+    font-size: 26px;
+    letter-spacing: 0px;
+    line-height: 1;
+    position: absolute;left: 1000px; top: 260px;
+   
+  }
+
+  input:focus {
+    background-color: #f2f2f2;
+  }
+  
+  input:invalid {
+    border-bottom-color: #cc0000;
+    border-top-color: #cc0000;
+    border-left-color: #cc0000;
+    border-right-color: #cc0000;
+    background-color: #ffcaca;
+  }
+
+  .password-label {
+    color: #ffbe59;
+    text-align: center;
+    font-family: "Fredoka One";
+    font-size: 26px;
+    letter-spacing: 0px;
+    line-height: 1;
+    position: absolute;left: 1000px; top: 350px;
+  }
+  
+  input {
+    color: #333333;
+    width: 331px;
+    text-align: left;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 18px;
+    border-bottom-color: #ffbe59;
+    border-top-color: #ffbe59;
+    border-left-color: #ffbe59;
+    border-right-color: #ffbe59;
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-width: 3px;
+    border-top-width: 3px;
+    border-left-width: 3px;
+    border-right-width: 3px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 5px;
+    background-color: #ffffff;
+  }
+
+  .positionEmail{
+    position: absolute;left: 1000px; top: 310px;
+  }
+  .positionPassword{
+    position: absolute;left: 1000px; top: 403px;
+  }
+
+  .positionButtonEnter{
+    position: absolute;left: 1000px; top: 502px;
+  }
+  .positionButtonRegister{
+    position: absolute;left: 1200px; top: 502px;
+  }
+
+  button {
+    color: #002b5c;
+    text-align: center;
+    font-family: "Fredoka One";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    letter-spacing: 0px;
+    line-height: 1.3;
+    border-bottom-color: #000000;
+    border-top-color: #000000;
+    border-left-color: #000000;
+    border-right-color: #000000;
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-width: 0px;
+    border-top-width: 0px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 10px;
+    text-decoration: none;
+    box-shadow: 1px 10px 10px 0px rgba(0, 0, 0, 0.24);
+    background-color: #ffbe59;
+  }
+  
+  
+
+
+  
