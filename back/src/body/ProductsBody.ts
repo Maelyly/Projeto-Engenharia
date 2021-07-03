@@ -1,6 +1,6 @@
 import { getCustomRepository, Repository } from 'typeorm';
 import { Product } from '../entities/Product';
-import { ProductRepository } from '../repositories/ProductRepository';
+import { ProductRepository } from '../repositories/ProductsRepository';
 import { IProductData } from '../interfaces/Product';
 
 

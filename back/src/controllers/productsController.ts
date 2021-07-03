@@ -6,11 +6,11 @@ import { ProductsBody } from '../body/ProductsBody';
 
 class ProductsController {
 	async create(request: Request, response: Response): Promise<Response> {
-		const {name,date_inclusion,date_modification }: IProductData = request.body;
+		const {name}: IProductData = request.body;
 
 		const productsbody = new ProductsBody();
 
-		const product = await productsbody.create({name,date_inclusion,date_modification});
+		const product = await productsbody.create({name});
 		if (product){
 			const responseData = cleanProduct(product);
 			return response.json(responseData);
