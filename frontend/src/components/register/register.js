@@ -1,23 +1,23 @@
 import React,{useEffect,useState} from 'react';
-import './cadastro.css';
+import './register.css';
 import {Link } from "react-router-dom";
-import CadastroForm from './cadastroForm';
+import RegisterForm from './registerForm';
 //import {Us} from "./Users/us";
 
-export default function Cadastro() {
+export default function Register() {
      
  
  
     return(
     <div>
 
-        <h2 className= "subTitulo-Cadastro">
+        <h2 className= "subTitle-Register">
             Crie sua conta
         </h2>
-        <CadastroForm/>
+        <RegisterForm/>
         
         <div className="login-asth">
-            <h1 className= "titulo">
+            <h1 className= "title">
                 Compras
                 Facil
             </h1>

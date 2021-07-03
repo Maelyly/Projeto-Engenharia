@@ -3,7 +3,7 @@ import { useState } from 'react';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import Home from './home/home';
 import Us from './Users/us'
-import Cadastro from './cadastro/cadastro';
+import Register from './register/register';
 import Login from './login/login';
 import Routers from './routers';
 import {AuthContextProvider} from '../store/authContext';
