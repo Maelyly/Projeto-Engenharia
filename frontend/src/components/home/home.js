@@ -9,7 +9,7 @@ export default function Home() {
     <h2 className="titulo1">Compras Facil</h2>
     <img src={logo} alt="logo" className="LogoHome" />
 
-    <StickyHeadTable/>
+      <StickyHeadTable/>
     </div>
     
   );

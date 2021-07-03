@@ -6,18 +6,18 @@ import Us from './Users/us'
 import Cadastro from './cadastro/cadastro';
 import Login from './login/login';
 import Routers from './routers';
+import {AuthContextProvider} from '../store/authContext';
 
 function App() {
   const [token, setToken] = useState();
 
-//if(!token){
-  //return <Login setToken = {setToken}/>
-//}
 
   return (
+    <AuthContextProvider>
     <div className="App">
       <Routers/>
     </div>
+    </AuthContextProvider>
   );
 }
 

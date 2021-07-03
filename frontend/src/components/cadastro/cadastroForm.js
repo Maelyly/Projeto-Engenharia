@@ -10,7 +10,7 @@ export default function CadastroForm(){
     const [email,setEmail] = useState('');
     const [senha,setSenha] = useState('');
     const [senha2,setSenha2] = useState('');
-    const apiUrl = ("http://localhost:8000/users");
+    
 
     const changeHandlerNome = (event) => {
         setNome(event.target.value);
@@ -49,38 +49,42 @@ export default function CadastroForm(){
         else{
             const response = await api.post('create/user', userData);
             console.log('Response:', response.userData);
+            
         }
     }
 
     return(
         <form className = "box" onSubmit= {handleSubmit}>
-        <label>
-            <p className = "nome-cadastro">Digite seu nome</p>
-            <input type="text"  className= "posicaoNomeCadastro" onChange = {changeHandlerNome} />
-        </label>
-        <label>
-            <p className = "user_name-cadastro">Digite seu nome de usuario</p>
-            <input type="text"  className= "posicaoUser_name" onChange = {changeHandlerUser_Name} />
-        </label>
-        <label>
-            <p className = "email-cadastro">Digite seu email</p>
-            <input type="email" className= "posicaoEmailCadastro" onChange= {changeHandlerEmail} />
-        </label>
-        <label>
-            <p className = "senha-cadastro">Crie sua senha</p>
-            <input type="password" className= "posicaoSenhaCadastro" onChange= {changeHandlerSenha}/>
-        </label>
-        <label>
-            <p className = "senha-cadastro2">Confirme sua senha</p>
-            <input type="password" className= "posicaoSenhaCadastro2" onChange= {changeHandlerSenha2}/>
-        </label>
-        
+            <div>    
+                <label>
+                    <p className = "nome-cadastro">Digite seu nome</p>
+                    <input type="text"  className= "posicaoNomeCadastro" onChange = {changeHandlerNome} />
+                </label>
+                <label>
+                    <p className = "user_name-cadastro">Digite seu nome de usuario</p>
+                    <input type="text"  className= "posicaoUser_name" onChange = {changeHandlerUser_Name} />
+                </label>
+                <label>
+                    <p className = "email-cadastro">Digite seu email</p>
+                    <input type="email" className= "posicaoEmailCadastro" onChange= {changeHandlerEmail} />
+                </label>
+                <label>
+                    <p className = "senha-cadastro">Crie sua senha</p>
+                    <input type="password" className= "posicaoSenhaCadastro" onChange= {changeHandlerSenha}/>
+                </label>
+                <label>
+                    <p className = "senha-cadastro2">Confirme sua senha</p>
+                    <input type="password" className= "posicaoSenhaCadastro2" onChange= {changeHandlerSenha2}/>
+                </label>
+            </div>
         <div>
             <Link to= "/login">
             <button className = "posicaoBotaoCancelar" >Cancelar</button>
             </Link>
             
-            <button type="submit" className = "posicaoBotaoCriar" >Criar</button>
+            <button type="submit" className = "posicaoBotaoCriar" >
+                criar
+            </button>
            
         </div>
 

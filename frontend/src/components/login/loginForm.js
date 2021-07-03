@@ -1,13 +1,14 @@
-import React,{useEffect,useState} from 'react';
+import React,{useEffect,useState,useContext} from 'react';
 import './login.css';
 import {Link } from "react-router-dom";
 import axios from 'axios';
 import api from '../../services/api';
+import AuthContext from '../../store/authContext';
 
 export default function LoginForm(){
     const [email,setEmail] = useState('');
     const [senha,setSenha] = useState('');
-    const apiUrl = ("http://localhost:8000/users");
+    const authCtx = useContext(AuthContext);
 
 
     const changeHandlerEmail = (event) => {
@@ -36,9 +37,16 @@ export default function LoginForm(){
             password : senha,
         }
         console.log(userData);
-        const response = await api.post('auth/login', userData);
-        console.log('Response:', response.userData);
-        console.log(response)
+        try{
+            const response = await api.post('auth/login', userData)
+            authCtx.login(response)
+            console.log('Response:', response.userData);
+            console.log(response)
+        }catch(error){
+            console.error(error)
+        }
+        
+        
     }
 
     return(
