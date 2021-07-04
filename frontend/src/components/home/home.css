@@ -1,0 +1,13 @@
+.LogoHome{
+    height: 100px;
+    position: absolute;left: 0px; top: 0px;
+}
+.titulo1{
+    color: #ffbe59;
+    text-align: left;
+    font-family: "Fredoka One";
+    font-size: 28px;
+    letter-spacing: 0px;
+    line-height: 1;
+    position: absolute;left: 90px; top: 10px;
+}

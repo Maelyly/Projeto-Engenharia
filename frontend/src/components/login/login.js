@@ -1,36 +1,20 @@
 import React from 'react';
 import './login.css';
-import {Link } from "react-router-dom";
-
+import LoginForm from './loginForm';
+import logo from './../../images/logo/logo.png';
 export default function Login() {
   return(
     <div>
 
-        <h2 className= "subTitulo">
+        <h2 className= "subTitle">
             Entre na sua conta
         </h2>
+        <img src={logo} alt="logo" className="Logo" />
 
-        <form className = "email-box">
-        <label>
-            <p className = "email-label">Email</p>
-            <input type="email"  className= "posicaoEmail" />
-        </label>
-        <label>
-            <p className = "senha-label">Senha</p>
-            <input type="password" className= "posicaoSenha" />
-        </label>
-        <div>
-            <Link to= "/home">
-            <button  type="submit" className = "posicaoBotaoEntrar" >Entrar</button>
-            </Link>
-            <Link to= "/cadastro">
-            <button type="submit" className = "posicaoBotaoCadastrar" >Cadastrar</button>
-            </Link>
-        </div>
-        </form>
+        <LoginForm/>
 
         <div className="login-asth">
-            <h1 className= "titulo">
+            <h1 className= "title">
                 Compras
                 Facil
             </h1>

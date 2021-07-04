@@ -1,0 +1,30 @@
+Table {
+    color: #002b5c;
+    text-align: left;
+    font-family: "Fredoka One";
+    font-size: 20px;
+    font-weight: 10;
+    letter-spacing: 0px;
+    line-height: 1;
+    border-bottom-color: #002b5c;
+    border-top-color: #e5e5e5;
+    border-left-color: #e5e5e5;
+    border-right-color: #e5e5e5;
+    border-bottom-left-radius: 0px;
+    border-top-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    border-top-right-radius: 0px;
+    border-bottom-width: 8px;
+    border-top-width: 1px;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    padding-bottom: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 10px;
+    background-color: #e9f0f6;
+    position: absolute; top: 200px;
+    max-width: 50%;
+    
+  }
+  

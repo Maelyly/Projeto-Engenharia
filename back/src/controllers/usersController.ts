@@ -6,7 +6,7 @@ import { UsersBody } from '../body/UsersBody';
 
 class UsersController {
 	async create(request: Request, response: Response): Promise<Response> {
-		const { email, name, password, user_name }: IUserData = request.body;
+		const { name, user_name, email, password }: IUserData = request.body;
 
 		const usersbody = new UsersBody();
 
@@ -21,6 +21,15 @@ class UsersController {
 				   .send({ message: 'Email already taken' });
 		}
 		
+	}
+
+	async list(request: Request, response: Response): Promise<Response>{
+		const usersbody = new UsersBody();
+		let x = 0;
+		while(x<1000000000){
+			x++;
+		}
+		return response.json(await usersbody.listUsers());
 	}
 
 	
