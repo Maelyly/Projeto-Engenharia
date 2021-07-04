@@ -15,6 +15,14 @@ class Product {
    @UpdateDateColumn()
    date_modification: Date;
 
+   @Column({type: "double"})
+   price: number;
+
+   @Column()
+   category: string;
+
+   @CreateDateColumn()
+   expiration_date: Date;
 
 	constructor() {
 		if (!this.id) {

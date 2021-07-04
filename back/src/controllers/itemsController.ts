@@ -6,11 +6,11 @@ import { ItemsBody } from '../body/ItemsBody';
 
 class ItemsController {
 	async create(request: Request, response: Response): Promise<Response> {
-		const {name,quant,id_product}: IItemData = request.body;
+		const {name,quant,id_product,total_price}: IItemData = request.body;
 
 		const itemsbody = new ItemsBody();
 
-		const item = await itemsbody.create({name,quant,id_product});
+		const item = await itemsbody.create({name,quant,id_product,total_price});
 		if (item){
 			const responseData = cleanItem(item);
 			return response.json(responseData);

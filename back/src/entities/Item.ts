@@ -18,6 +18,8 @@ class Item {
     @CreateDateColumn()
 	data_incl: Date;
 
+	@Column({type: "double"})
+    total_price: number;
 
 	constructor() {
 		if (!this.id) {

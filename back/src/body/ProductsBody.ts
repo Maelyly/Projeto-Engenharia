@@ -15,13 +15,13 @@ class ProductsBody {
 	
 
 	async create(productData: IProductData) {
-		const {  name } = productData;
+		const {  name,category,price } = productData;
 
 		const productExists = await this.findByProductName(name);
 
 		if (productExists) return false;
 
-		const product = this.productsRepository.create({name});
+		const product = this.productsRepository.create({name,category,price});
 
 		await this.productsRepository.save(product);
 
