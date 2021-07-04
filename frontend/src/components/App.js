@@ -7,6 +7,7 @@ import Cadastro from './cadastro/cadastro';
 import Login from './login/login';
 import Routers from './routers';
 import {AuthContextProvider} from '../store/authContext';
+import {UserContextProvider} from '../components/Users/user'
 
 function App() {
   const [token, setToken] = useState();
@@ -14,9 +15,11 @@ function App() {
 
   return (
     <AuthContextProvider>
+    <UserContextProvider>
     <div className="App">
       <Routers/>
     </div>
+    </UserContextProvider>
     </AuthContextProvider>
   );
 }

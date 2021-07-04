@@ -4,14 +4,14 @@ import {Link, useHistory } from "react-router-dom";
 import axios from 'axios';
 import api from '../../services/api';
 import AuthContext from '../../store/authContext';
+import UserContext from '../Users/user';
 
 export default function LoginForm(){
     const [email,setEmail] = useState('');
     const [senha,setSenha] = useState('');
     const authCtx = useContext(AuthContext);
-    const isLoggedIn = authCtx.isLoggedIn;
     const history = useHistory();
-
+    const userCtx = useContext(UserContext);
 
     const changeHandlerEmail = (event) => {
         setEmail(event.target.value);
@@ -31,10 +31,11 @@ export default function LoginForm(){
         }
         console.log(userData);
         try{
-           const response = await api.post('auth/login', userData)
+            const response = await api.post('auth/login', userData)
             authCtx.login(response.data)
+            userCtx.login(userData.user_name)
             history.replace('/home')
-            console.log('Response:', response.userData);
+            console.log('Response:', response.data);
             console.log(response)
         }catch(error){
             console.error(error)

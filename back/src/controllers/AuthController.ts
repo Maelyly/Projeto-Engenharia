@@ -14,7 +14,7 @@ class AuthController {
 				.status(403)
 				.send({ message: 'Incorrect user_name or password' });
 		}
-
+		
 		return response.json({ token });
 	}
 
