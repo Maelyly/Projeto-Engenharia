@@ -1,8 +1,7 @@
 export interface IShoppingListData {
 	total_expenses: number;
-    owner: String;
+    owner: User;
     month: number;
     year: number;
-    shoppingitems: String;
-	
+    shoppingitems: ShoppingItem[];
 }

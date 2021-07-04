@@ -1,17 +1,17 @@
 import { Request, Response } from 'express';
-import { ShoppingItemBody } from '../body/ShoppingItem';
+import { ShoppingItemBody } from '../body/ShoppingItemBody';
 import { ShoppingItem } from '../entities/ShoppingItem';
-import { IShoppingItemData } from '../interfaces/Shoppingitem';
+import { IShoppingItemData } from '../interfaces/ShoppingItem';
 
 
 
 class ShoppingItemController {
 	async create(request: Request, response: Response): Promise<Response> {
-		const {value_total_shop,value_total,admin,editor}: IShoppingItemData = request.body;
+		const {value_total_shop,value_total,admin,editor, shoppinglist}: IShoppingItemData = request.body;
 
 		const productsbody = new ShoppingItemBody();
 
-		const product = await productsbody.create({value_total_shop,value_total,admin,editor});
+		const product = await productsbody.create({ value_total_shop,value_total,admin,editor, shoppinglist });
 		if (product){
 			const responseData = cleanProduct(product);
 			return response.json(responseData);

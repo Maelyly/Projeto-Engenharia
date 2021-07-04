@@ -1,7 +1,7 @@
 import { getCustomRepository, Repository } from 'typeorm';
 import { ShoppingItem } from '../entities/ShoppingItem';
-import { IShoppingItemData } from '../interfaces/Shoppingitem';
-import { ShoppingItemRepository } from '../repositories/ShoppingItem';
+import { IShoppingItemData } from '../interfaces/ShoppingItem';
+import { ShoppingItemRepository } from '../repositories/ShoppingItemRepository';
 
 
 class ShoppingItemBody {

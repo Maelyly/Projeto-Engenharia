@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { ShoppingListBody } from '../body/ShoppingList';
+import { ShoppingListBody } from '../body/ShoppingListBody';
 import { ShoppingList } from '../entities/ShoppingList';
 import { IShoppingListData } from '../interfaces/ShoppingList';
 
@@ -11,7 +11,7 @@ class ShoppingListController {
 
 		const productsbody = new ShoppingListBody();
 
-		const product = await productsbody.create({ total_expenses,owner,month,year,shoppingitems});
+		const product = await productsbody.create({ total_expenses,owner,month,year,shoppingitems });
 		if (product){
 			const responseData = cleanProduct(product);
 			return response.json(responseData);
