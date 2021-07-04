@@ -1,4 +1,4 @@
-.subTitle-register{
+.subTitle-Register{
   color: #ffbe59;
   width: 300px;
   text-align: center;
@@ -32,59 +32,66 @@
 }
 
 .name-register {
+    width: 300px;
     color: #ffbe59;
     text-align: center;
     font-family: "Fredoka One";
     font-size: 26px;
     letter-spacing: 0px;
     line-height: 1;
-    position: absolute;left: 1000px; top: 150px;
+    position: absolute;left: 953px; top: 100px;
+    align-self: left;
    
   }
 
-  
-  .email-register {
+.user_name-register{
+    width: 400px;
     color: #ffbe59;
     text-align: center;
     font-family: "Fredoka One";
     font-size: 26px;
     letter-spacing: 0px;
     line-height: 1;
-    position: absolute;left: 1000px; top: 220px;
+    position: absolute;left: 973px; top: 150px;
+}
+  
+  .email-register {
+    width: 300px;
+    color: #ffbe59;
+    text-align: center;
+    font-family: "Fredoka One";
+    font-size: 26px;
+    letter-spacing: 0px;
+    line-height: 1;
+    position: absolute;left: 953px; top: 220px;
+   
   }
 
   .password-register {
+      width: 300px;
       color: #ffbe59;
       text-align: center;
       font-family: "Fredoka One";
       font-size: 26px;
       letter-spacing: 0px;
       line-height: 1;
-      position: absolute;left: 1000px; top: 300px;
+      position: absolute;left: 953px; top: 300px;
     }
 
-    .user_name-register{
-      width: 400px;
-      color: #ffbe59;
-      text-align: center;
-      font-family: "Fredoka One";
-      font-size: 26px;
-      letter-spacing: 0px;
-      line-height: 1;
-      position: absolute;left: 973px; top: 150px;
-  }
+
     .password-register2 {
+      width: 300px;
       color: #ffbe59;
       text-align: center;
       font-family: "Fredoka One";
       font-size: 26px;
       letter-spacing: 0px;
       line-height: 1;
-      position: absolute;left: 1000px; top: 380px;
+      position: absolute;left: 973px; top: 380px;
     }
 
 
-
+  
   input {
     color: #333333;
     width: 331px;
@@ -114,9 +121,11 @@
     position: absolute;left: 1000px; top: 280px;
   }
   .positionNameRegister{
-    position: absolute;left: 1000px; top: 205px;
+    position: absolute;left: 1000px; top: 150px;
   }
-
+  .positionUser_name{
+    position: absolute; left: 1000px; top: 203px;
+  }
   .positionPasswordRegister{
       position: absolute;left: 1000px; top: 353px;
   }
@@ -132,10 +141,6 @@
     position: absolute;left: 1200px; top: 502px;
   }
 
-  .positionUser_name{
-    position: absolute; left: 1000px; top: 203px;
-  }
-  
   button {
     color: #002b5c;
     text-align: center;

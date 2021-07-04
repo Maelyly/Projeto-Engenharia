@@ -6,6 +6,9 @@
   
 }
 
+.Logo{
+position: absolute;left: -100px; top: 50px;
+}
 .subTitle{
 color: #ffbe59;
 width: 300px;
