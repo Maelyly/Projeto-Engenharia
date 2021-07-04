@@ -6,11 +6,11 @@ import { UsersBody } from '../body/UsersBody';
 
 class UsersController {
 	async create(request: Request, response: Response): Promise<Response> {
-		const { name, user_name, email, password,family }: IUserData = request.body;
+		const { name, user_name, email, password,family,shoppinglist,shoppingitems }: IUserData = request.body;
 
 		const usersbody = new UsersBody();
 
-		const user = await usersbody.create({ email, name, password, user_name,family });
+		const user = await usersbody.create({ email, name, password, user_name,family,shoppinglist,shoppingitems });
 		if (user){
 			const responseData = cleanUser(user);
 			return response.json(responseData);
@@ -25,10 +25,6 @@ class UsersController {
 
 	async list(request: Request, response: Response): Promise<Response>{
 		const usersbody = new UsersBody();
-		let x = 0;
-		while(x<1000000000){
-			x++;
-		}
 		return response.json(await usersbody.listUsers());
 	}
 
@@ -36,8 +32,8 @@ class UsersController {
 }
 
 function cleanUser(user: User) {
-	const { email, name,user_name, createdAt,family } = user;
-	return { email, name,user_name, createdAt,family };
+	const { email, name,user_name, createdAt,family,shoppinglist,shoppingitems } = user;
+	return { email, name,user_name, createdAt,family,shoppinglist,shoppingitems };
 }
 
 export { UsersController };

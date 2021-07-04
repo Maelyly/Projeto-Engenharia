@@ -19,18 +19,13 @@ class UsersBody {
 	}
 
 	async create(userData: IUserData) {
-		const { email, name, password, user_name } = userData;
+		const { email, name, password, user_name,family,shoppinglist,shoppingitems } = userData;
 
 		const userExists = await this.findByEmail(email);
 
 		if (userExists) return false;
 
-		const user = this.usersRepository.create({
-			email,
-			name,
-			passwordHash: this.hashPassword(password),
-			user_name,
-		});
+		const user = this.usersRepository.create({email,name,passwordHash: this.hashPassword(password),user_name,family,shoppinglist,shoppingitems});
 
 		await this.usersRepository.save(user);
 

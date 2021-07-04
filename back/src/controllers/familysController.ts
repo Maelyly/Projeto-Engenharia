@@ -6,11 +6,11 @@ import { IFamilyData } from '../interfaces/family';
 
 class FamilyController {
 	async create(request: Request, response: Response): Promise<Response> {
-		const {name,family}: IFamilyData = request.body;
+		const {name,user}: IFamilyData = request.body;
 
 		const familybody = new FamilyBody();
 
-		const family2 = await familybody.create({name,family});
+		const family2 = await familybody.create({name,user});
 		if (family2){
 			const responseData = cleanFamily(family2);
 			return response.json(responseData);
@@ -18,7 +18,7 @@ class FamilyController {
 		else{
 			return response
 				   .status(401)
-				   .send({ message: 'Item alredy exist' });
+				   .send({ message: 'Family alredy exist' });
 		}
 		
 	}
@@ -32,8 +32,8 @@ class FamilyController {
 }
 
 function cleanFamily(family2: Family) {
-	const {name,family} = family2;
-	return {name,family};
+	const {name,user} = family2;
+	return {name,user};
 }
 
 export { FamilyController };

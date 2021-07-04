@@ -1,11 +1,7 @@
 import { getCustomRepository, Repository } from 'typeorm';
 import { Family } from '../entities/Family';
-import { IFamilyData } from '../interfaces/family';
+import { IFamilyData } from '../interfaces/Family';
 import { FamilyRepository } from '../repositories/FamilysRepository';
-
-
-
-
 
 
 class FamilyBody {
@@ -19,7 +15,7 @@ class FamilyBody {
 	
 
 	async create(familyData: IFamilyData) {
-		const {  name, family_owner } = familyData;
+		const {  name,user } = familyData;
 
 		const familyExists = await this.findByName(name);
 		
@@ -27,11 +23,11 @@ class FamilyBody {
 		if (familyExists) return false;
 		
 
-		const item = this.familysRepository.create({name, family_owner});
+		const family = this.familysRepository.create({name,user});
 
-		await this.familysRepository.save(item);
+		await this.familysRepository.save(family);
 
-		return item;
+		return family;
 	}
 
 	async listItems(){
