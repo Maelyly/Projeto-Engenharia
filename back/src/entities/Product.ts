@@ -6,7 +6,7 @@ class Product {
 	@PrimaryColumn()
 	id: string;
    
-   @Column()
+   @Column({unique: true})
    name: string;
 
    @CreateDateColumn()

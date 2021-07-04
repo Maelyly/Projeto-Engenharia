@@ -5,8 +5,6 @@ import { IItemData } from '../interfaces/Item';
 import { ProductRepository } from '../repositories/ProductsRepository';
 
 
-
-
 class ItemsBody {
 	private itemsRepository: Repository<Item>;
 	productsRepository = getCustomRepository(ProductRepository);

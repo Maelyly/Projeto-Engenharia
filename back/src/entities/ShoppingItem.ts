@@ -1,4 +1,4 @@
-import { Entity, PrimaryColumn, Column, CreateDateColumn, ManyToOne } from 'typeorm';
+import { Entity, PrimaryColumn, Column, CreateDateColumn, ManyToOne, ManyToMany } from 'typeorm';
 import { v4 as uuid } from 'uuid';
 import { Family } from './Family';
 import { User } from './User';
@@ -20,7 +20,7 @@ class ShoppingItem {
 	@ManyToOne(()=>User, user => user.id)
 	admin: String;
     
-	@ManyToOne(()=>Family, family => family.id)
+	@ManyToMany(()=>Family, family => family.id)
 	editor: String;
 
 	constructor() {
