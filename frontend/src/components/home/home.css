@@ -11,3 +11,10 @@
     line-height: 1;
     position: absolute;left: 90px; top: 10px;
 }
+
+.teste{
+    position: absolute;left: 800px; top: 100px;
+}
+.botaoTeste{
+    position: absolute;left: 800px; top: 10px;
+}
