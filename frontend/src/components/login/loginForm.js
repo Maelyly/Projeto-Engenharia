@@ -21,15 +21,6 @@ export default function LoginForm(){
         setSenha(event.target.value);
     }
 
-    /*const handleSubmit = (event) =>{
-        event.preventDefault();
-
-        const userData = {
-            email : email,
-            senha : senha,
-        }
-        console.log(userData);
-    }*/
 
     async function handleSubmit(event) {
         event.preventDefault();

@@ -24,13 +24,21 @@ class AuthBody {
 		const isCorrectPassword = compareSync(password, hash);
 
 		if (isCorrectPassword) {
-			console.log(process.env.ACCESS_TOKEN_SECRET);
-			const accessToken = jwt.sign({ "username": user.user_name }, process.env.ACCESS_TOKEN_SECRET);
+			const accessToken = jwt.sign({ 'user_name' : user.user_name }, process.env.ACCESS_TOKEN_SECRET);
 			return accessToken;
 		}
 
 		return isCorrectPassword;
     }
+
+	checkToken(token: string){
+		var ret: any
+		jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
+			if (err) return "deu erro";
+			ret = user
+		})
+		return ret
+	}
 
 } 
 
