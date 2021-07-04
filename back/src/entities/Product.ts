@@ -8,7 +8,7 @@ class Product {
    
    @Column({unique: true})
    name: string;
-
+   
    @CreateDateColumn()
    date_inclusion: Date;
 
