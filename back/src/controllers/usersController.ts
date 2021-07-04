@@ -6,11 +6,11 @@ import { UsersBody } from '../body/UsersBody';
 
 class UsersController {
 	async create(request: Request, response: Response): Promise<Response> {
-		const { name, user_name, email, password }: IUserData = request.body;
+		const { name, user_name, email, password,family }: IUserData = request.body;
 
 		const usersbody = new UsersBody();
 
-		const user = await usersbody.create({ email, name, password, user_name });
+		const user = await usersbody.create({ email, name, password, user_name,family });
 		if (user){
 			const responseData = cleanUser(user);
 			return response.json(responseData);
@@ -36,8 +36,8 @@ class UsersController {
 }
 
 function cleanUser(user: User) {
-	const { email, name,user_name, createdAt } = user;
-	return { email, name,user_name, createdAt };
+	const { email, name,user_name, createdAt,family } = user;
+	return { email, name,user_name, createdAt,family };
 }
 
 export { UsersController };

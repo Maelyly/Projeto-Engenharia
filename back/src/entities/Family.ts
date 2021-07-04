@@ -1,4 +1,4 @@
-import { Entity, PrimaryColumn, Column, CreateDateColumn, ManyToOne } from 'typeorm';
+import { Entity, PrimaryColumn, Column, OneToMany } from 'typeorm';
 import { v4 as uuid } from 'uuid';
 import { User } from './User';
 
@@ -10,8 +10,8 @@ class Family {
 	@Column()
 	name: String;
     
-	@ManyToOne(()=>User, user => user.id)
-	family_owner:String;
+	@OneToMany(()=>User, user => user.family)
+	user:User[];
 
 	constructor() {
 		if (!this.id) {

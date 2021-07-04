@@ -5,12 +5,10 @@ import { Product } from './Product';
 @Entity('items')
 class Item {
 	@PrimaryColumn()
-	   id: string;
+	id: string;
 
-       @ManyToOne(()=>Product, product => product.id)
-       id_product: string;
-       @ManyToOne(()=>Product, product => product.name)
-	   name: string;
+    @ManyToOne(()=>Product, product => product.items)
+    products: Product;
 
 	@Column({type: "int"})
 	quant: number;

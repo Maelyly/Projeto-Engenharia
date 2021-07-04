@@ -3,5 +3,6 @@ export interface IShoppingListData {
     owner: String;
     month: number;
     year: number;
+    shoppingitems: String;
 	
 }

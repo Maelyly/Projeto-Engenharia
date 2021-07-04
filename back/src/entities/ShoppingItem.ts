@@ -1,6 +1,6 @@
-import { Entity, PrimaryColumn, Column, CreateDateColumn, ManyToOne, ManyToMany } from 'typeorm';
+import { Entity, PrimaryColumn, Column, CreateDateColumn, ManyToOne} from 'typeorm';
 import { v4 as uuid } from 'uuid';
-import { Family } from './Family';
+import { ShoppingList } from './ShoppingList';
 import { User } from './User';
 
 @Entity('shoppingItem')
@@ -17,11 +17,14 @@ class ShoppingItem {
 	@CreateDateColumn()
 	date_shop: Date;
 
-	@ManyToOne(()=>User, user => user.id)
-	admin: String;
+	@ManyToOne(()=>User, user => user.shoppingitems)
+	admin: User;
     
-	@ManyToMany(()=>Family, family => family.id)
-	editor: String;
+	@Column()
+	editor:boolean;
+
+	@ManyToOne(()=>ShoppingList, list => list.shoppingitems)
+	shoppinglist: ShoppingList;
 
 	constructor() {
 		if (!this.id) {

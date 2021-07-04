@@ -15,9 +15,9 @@ class ShoppingListBody {
 	
 
 	async create(itemData: IShoppingListData) {
-		const { total_expenses,owner,month,year} = itemData;
+		const { total_expenses,owner,month,year,shoppingitems} = itemData;
 		
-		const item = this.shoppingListRepository.create({total_expenses,owner,month,year});
+		const item = this.shoppingListRepository.create({total_expenses,owner,month,year,shoppingitems});
 
 		await this.shoppingListRepository.save(item);
 

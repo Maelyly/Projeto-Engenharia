@@ -6,13 +6,13 @@ import { IFamilyData } from '../interfaces/family';
 
 class FamilyController {
 	async create(request: Request, response: Response): Promise<Response> {
-		const {name,family_owner}: IFamilyData = request.body;
+		const {name,family}: IFamilyData = request.body;
 
 		const familybody = new FamilyBody();
 
-		const family = await familybody.create({name,family_owner});
-		if (family){
-			const responseData = cleanFamily(family);
+		const family2 = await familybody.create({name,family});
+		if (family2){
+			const responseData = cleanFamily(family2);
 			return response.json(responseData);
 		}
 		else{
@@ -31,9 +31,9 @@ class FamilyController {
 	
 }
 
-function cleanFamily(family: Family) {
-	const {name,family_owner} = family;
-	return {name,family_owner};
+function cleanFamily(family2: Family) {
+	const {name,family} = family2;
+	return {name,family};
 }
 
 export { FamilyController };

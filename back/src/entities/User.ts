@@ -1,5 +1,8 @@
-import { Entity, PrimaryColumn, Column, CreateDateColumn } from 'typeorm';
+import { Entity, PrimaryColumn, Column, CreateDateColumn, ManyToOne, OneToMany, OneToOne } from 'typeorm';
 import { v4 as uuid } from 'uuid';
+import { Family } from './Family';
+import { ShoppingItem } from './ShoppingItem';
+import { ShoppingList } from './ShoppingList';
 
 @Entity('users')
 class User {
@@ -21,6 +24,14 @@ class User {
 	@CreateDateColumn()
 	createdAt: Date;
 
+	@ManyToOne(()=>Family, family => family.user)
+	family:Family;
+	
+	@OneToOne(()=>ShoppingList, shoppinglisty => shoppinglisty.owner)
+	shoppinglist:ShoppingList;
+
+	@OneToMany(()=>ShoppingItem, shop => shop.admin)
+	shoppingitems: ShoppingItem[];
 
 	constructor() {
 		if (!this.id) {

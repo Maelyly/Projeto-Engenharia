@@ -1,5 +1,6 @@
-import { Entity, PrimaryColumn, Column, CreateDateColumn, ManyToOne } from 'typeorm';
+import { Entity, PrimaryColumn, Column, CreateDateColumn, ManyToOne, OneToMany, OneToOne } from 'typeorm';
 import { v4 as uuid } from 'uuid';
+import { ShoppingItem } from './ShoppingItem';
 import { User } from './User';
 
 @Entity('shoppingList')
@@ -10,14 +11,17 @@ class ShoppingList {
 	@Column({type: "double"})
 	total_expenses: number;
 
-	@ManyToOne(()=>User, user => user.id)
-	owner: String;
+	@OneToOne(()=>User, user => user.shoppinglist)
+	owner: User;
 
 	@Column({type: "int"})
 	month: number;
 
 	@Column({type: "int"})
 	year: number;
+
+	@OneToMany(()=>ShoppingItem, shopitem => shopitem.shoppinglist)
+	shoppingitems: ShoppingItem[];
     
 	constructor() {
 		if (!this.id) {

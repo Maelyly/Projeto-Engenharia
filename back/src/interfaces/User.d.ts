@@ -3,4 +3,5 @@ export interface IUserData {
 	password: string;
 	name: string;
 	user_name: string;
+	family: string;
 }

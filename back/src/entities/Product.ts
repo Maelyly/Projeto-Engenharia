@@ -1,5 +1,6 @@
-import { Entity, PrimaryColumn, Column, CreateDateColumn, UpdateDateColumn } from 'typeorm';
+import { Entity, PrimaryColumn, Column, CreateDateColumn, UpdateDateColumn, OneToMany } from 'typeorm';
 import { v4 as uuid } from 'uuid';
+import { Item } from './Item';
 
 @Entity('product')
 class Product {
@@ -23,6 +24,11 @@ class Product {
 
    @CreateDateColumn()
    expiration_date: Date;
+
+   @OneToMany(()=>Item, item => item.products)
+   items: Item[];
+
+ 
 
 	constructor() {
 		if (!this.id) {
