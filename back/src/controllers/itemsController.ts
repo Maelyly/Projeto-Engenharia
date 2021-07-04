@@ -6,11 +6,11 @@ import { ItemsBody } from '../body/ItemsBody';
 
 class ItemsController {
 	async create(request: Request, response: Response): Promise<Response> {
-		const {name,quant,id_product,total_price}: IItemData = request.body;
+		const {quant,products,total_price}: IItemData = request.body;
 
 		const itemsbody = new ItemsBody();
 
-		const item = await itemsbody.create({name,quant,id_product,total_price});
+		const item = await itemsbody.create({quant,products,total_price});
 		if (item){
 			const responseData = cleanItem(item);
 			return response.json(responseData);
@@ -32,8 +32,8 @@ class ItemsController {
 }
 
 function cleanItem(item: Item) {
-	const {name,quant,id_product} = item;
-	return {name,quant,id_product};
+	const {quant,products,total_price} = item;
+	return {quant,products,total_price};
 }
 
 export { ItemsController };

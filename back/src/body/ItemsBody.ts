@@ -16,15 +16,10 @@ class ItemsBody {
 	
 
 	async create(itemData: IItemData) {
-		const {  name, quant,id_product,total_price } = itemData;
+		const { quant,products,total_price } = itemData;
 
-		const itemExists = await this.findByItemName(name);
-		const productExist = await this.findByProductName(name);
 
-		if (itemExists) return false;
-		//if (productExist) return true;
-
-		const item = this.itemsRepository.create({name,quant,id_product,total_price});
+		const item = this.itemsRepository.create({quant,products,total_price});
 
 		await this.itemsRepository.save(item);
 

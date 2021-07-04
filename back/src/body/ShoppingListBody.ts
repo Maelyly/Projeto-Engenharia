@@ -21,5 +21,8 @@ class ShoppingListBody {
 	async listItems(){
 		return await this.shoppingListRepository.query(`SELECT * FROM shoppinglist`);
 	}
+	async yearexpenses(year: number){
+		return await this.shoppingListRepository.query(`SELECT year=='$year' FROM shoppinglist`); //?
+	}
 }
 export { ShoppingListBody };
