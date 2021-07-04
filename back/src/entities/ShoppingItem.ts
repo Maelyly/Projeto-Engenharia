@@ -1,5 +1,7 @@
-import { Entity, PrimaryColumn, Column, CreateDateColumn } from 'typeorm';
+import { Entity, PrimaryColumn, Column, CreateDateColumn, ManyToOne } from 'typeorm';
 import { v4 as uuid } from 'uuid';
+import { Family } from './Family';
+import { User } from './User';
 
 @Entity('shoppingItem')
 class ShoppingItem {
@@ -7,19 +9,19 @@ class ShoppingItem {
 	id: String;
 
 	@Column({type: "double"})
-	valor_total_compra: number;
+	value_total_shop: number;
 
 	@Column({type: "double"})
-	valor_total: number;
+	value_total: number;
 
-	@Column()
-	date_compra: Date;
+	@CreateDateColumn()
+	date_shop: Date;
 
-	@Column()
+	@ManyToOne(()=>User, user => user.id)
 	admin: String;
     
-	@Column()
-	editores: String;
+	@ManyToOne(()=>Family, family => family.id)
+	editor: String;
 
 	constructor() {
 		if (!this.id) {

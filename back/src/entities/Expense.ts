@@ -7,16 +7,16 @@ class Expense {
 	id: String;
 
 	@Column({type: "double"})
-	valor_gasto_usuario: number;
+	value_expenses_user: number;
 
 	@Column({type: "double"})
-	valor_gasto_familiar: number;
+	value_expenses_family: number;
 
-	@Column()
-	meta_gastos_usuario: Date;
+	@Column({type: "double"})
+	goal_expenses_user: number;
 
-	@Column()
-	meta_gastos_familiar: String;
+	@Column({type: "double"})
+	goal_expenses_famiy: number;
 
 	constructor() {
 		if (!this.id) {
