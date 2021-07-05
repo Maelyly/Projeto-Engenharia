@@ -3,6 +3,8 @@ import { User } from '../entities/User';
 import { UsersRepository } from '../repositories/UsersRepository';
 import { IUserData } from '../interfaces/User';
 import { hashSync, genSaltSync } from 'bcrypt';
+import { ShoppingListBody } from './ShoppingListBody';
+import { ShoppingItemBody } from './ShoppingItemBody';
 
 
 class UsersBody {
@@ -20,30 +22,31 @@ class UsersBody {
 
 	async create(userData: IUserData) {
 		const { email, name, password, user_name } = userData;
-
-		const userExists = await this.findByEmail(email);
+		let family = null
+		let shoppinglist = null
+		let shoppingitems = null
+		const userExists = await this.findByUser_name(user_name);
 
 		if (userExists) return false;
 
-		const user = this.usersRepository.create({
-			email,
-			name,
-			passwordHash: this.hashPassword(password),
-			user_name,
-		});
+		const user = this.usersRepository.create({email,name,passwordHash: this.hashPassword(password),user_name,family,shoppingitems});
 
 		await this.usersRepository.save(user);
 
 		return user;
+	}
+	
+	async update(username:string, update:any){
+		this.usersRepository.update({user_name:username}, update)
 	}
 
 	async listUsers(){
 		return await this.usersRepository.query(`SELECT * FROM users`);
 	}
 
-	async findByEmail(email: string) {
+	async findByUser_name(user_name: string) {
 		return this.usersRepository.findOne({
-			email,
+			user_name,
 		});
 	}
 }

@@ -1,10 +1,10 @@
 import React,{useEffect,useState} from 'react';
-import './cadastro.css';
+import './register.css';
 import {Link } from "react-router-dom";
 import axios from 'axios';
 import api from '../../services/api';
 
-export default function CadastroForm(){
+export default function RegisterForm(){
     const [nome,setNome] = useState('');
     const [user_name,setUser_name] = useState('');
     const [email,setEmail] = useState('');
@@ -57,32 +57,32 @@ export default function CadastroForm(){
         <form className = "box" onSubmit= {handleSubmit}>
             <div>    
                 <label>
-                    <p className = "nome-cadastro">Digite seu nome</p>
-                    <input type="text"  className= "posicaoNomeCadastro" onChange = {changeHandlerNome} />
+                    <p className = "name-register">Digite seu nome</p>
+                    <input type="text"  className= "positionNameRegister" onChange = {changeHandlerNome} />
                 </label>
                 <label>
-                    <p className = "user_name-cadastro">Digite seu nome de usuario</p>
-                    <input type="text"  className= "posicaoUser_name" onChange = {changeHandlerUser_Name} />
+                    <p className = "user_name-register">Digite seu nome de usuario</p>
+                    <input type="text"  className= "positionUser_name" onChange = {changeHandlerUser_Name} />
                 </label>
                 <label>
-                    <p className = "email-cadastro">Digite seu email</p>
-                    <input type="email" className= "posicaoEmailCadastro" onChange= {changeHandlerEmail} />
+                    <p className = "email-register">Digite seu email</p>
+                    <input type="email" className= "positionEmailRegister" onChange= {changeHandlerEmail} />
                 </label>
                 <label>
-                    <p className = "senha-cadastro">Crie sua senha</p>
-                    <input type="password" className= "posicaoSenhaCadastro" onChange= {changeHandlerSenha}/>
+                    <p className = "password-register">Crie sua senha</p>
+                    <input type="password" className= "positionPasswordRegister" onChange= {changeHandlerSenha}/>
                 </label>
                 <label>
-                    <p className = "senha-cadastro2">Confirme sua senha</p>
-                    <input type="password" className= "posicaoSenhaCadastro2" onChange= {changeHandlerSenha2}/>
+                    <p className = "password-register2">Confirme sua senha</p>
+                    <input type="password" className= "positionPasswordRegister2" onChange= {changeHandlerSenha2}/>
                 </label>
             </div>
         <div>
             <Link to= "/login">
-            <button className = "posicaoBotaoCancelar" >Cancelar</button>
+            <button className = "positionButtonCancel" >Cancelar</button>
             </Link>
             
-            <button type="submit" className = "posicaoBotaoCriar" >
+            <button type="submit" className = "positionButtonCreate" >
                 criar
             </button>
            

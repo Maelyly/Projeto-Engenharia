@@ -18,17 +18,13 @@ class UsersController {
 		else{
 			return response
 				   .status(401)
-				   .send({ message: 'Email already taken' });
+				   .send({ message: 'username already taken' });
 		}
 		
 	}
 
 	async list(request: Request, response: Response): Promise<Response>{
 		const usersbody = new UsersBody();
-		let x = 0;
-		while(x<1000000000){
-			x++;
-		}
 		return response.json(await usersbody.listUsers());
 	}
 
@@ -36,8 +32,8 @@ class UsersController {
 }
 
 function cleanUser(user: User) {
-	const { email, name,user_name, createdAt } = user;
-	return { email, name,user_name, createdAt };
+	const { email, name,user_name, createdAt,family,shoppingitems } = user;
+	return { email, name,user_name, createdAt,family,shoppingitems };
 }
 
 export { UsersController };

@@ -6,7 +6,7 @@ export default function Login() {
   return(
     <div>
 
-        <h2 className= "subTitulo">
+        <h2 className= "subTitle">
             Entre na sua conta
         </h2>
         <img src={logo} alt="logo" className="Logo" />
@@ -14,7 +14,7 @@ export default function Login() {
         <LoginForm/>
 
         <div className="login-asth">
-            <h1 className= "titulo">
+            <h1 className= "title">
                 Compras
                 Facil
             </h1>

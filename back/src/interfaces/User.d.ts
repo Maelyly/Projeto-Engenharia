@@ -1,3 +1,5 @@
+import { Family } from "../entities/Family";
+
 export interface IUserData {
 	email: string;
 	password: string;
