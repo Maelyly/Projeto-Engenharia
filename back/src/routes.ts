@@ -20,6 +20,7 @@ routes.get('/', (request, response) => {
 
 routes.post('/create/user', usersController.create);
 routes.get('/users', usersController.list);
+routes.post('/token', authController.check);
 routes.post('/auth/login', authController.login);
 routes.post('/items', itemsController.create);
 routes.get('/items', itemsController.list);

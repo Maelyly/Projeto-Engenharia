@@ -1,6 +1,6 @@
 import React,{useEffect,useState,useContext} from 'react';
 import './login.css';
-import {Link } from "react-router-dom";
+import {Link, useHistory } from "react-router-dom";
 import axios from 'axios';
 import api from '../../services/api';
 import AuthContext from '../../store/authContext';
@@ -9,6 +9,8 @@ export default function LoginForm(){
     const [email,setEmail] = useState('');
     const [senha,setSenha] = useState('');
     const authCtx = useContext(AuthContext);
+    const isLoggedIn = authCtx.isLoggedIn;
+    const history = useHistory();
 
 
     const changeHandlerEmail = (event) => {
@@ -19,15 +21,6 @@ export default function LoginForm(){
         setSenha(event.target.value);
     }
 
-    /*const handleSubmit = (event) =>{
-        event.preventDefault();
-
-        const userData = {
-            email : email,
-            senha : senha,
-        }
-        console.log(userData);
-    }*/
 
     async function handleSubmit(event) {
         event.preventDefault();
@@ -38,8 +31,9 @@ export default function LoginForm(){
         }
         console.log(userData);
         try{
-            const response = await api.post('auth/login', userData)
-            authCtx.login(response)
+           const response = await api.post('auth/login', userData)
+            authCtx.login(response.data)
+            history.replace('/home')
             console.log('Response:', response.userData);
             console.log(response)
         }catch(error){
@@ -64,6 +58,7 @@ export default function LoginForm(){
             <Link to= "/register">
             <button className = "positionButtonRegister" >Cadastrar</button>
             </Link>
+           
         </div>
         </form>
     )
