@@ -22,7 +22,7 @@ export default function Routers(){
                     <Route path="/us">
                         <Us />
                     </Route>
-                    <Route path="/us">
+                    <Route path="/carrinho">
                         <Carrinho />
                     </Route>
                 </Switch>

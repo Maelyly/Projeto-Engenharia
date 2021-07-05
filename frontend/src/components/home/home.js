@@ -36,6 +36,18 @@ export default function Home() {
       logout
     </button>
     
+    <div>
+      <Link to= '/carrinho'>
+      <button className= "positionAdd">
+        adicionar compra
+      </button>
+      </Link>
+      <button className= "positionPr" onClick = {logoutHandler}>
+        adicionar produto
+      </button>
+    </div>
+
+
     <img src={logo} alt="logo" className="LogoHome" />
 
       <StickyHeadTable/>

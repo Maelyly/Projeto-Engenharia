@@ -18,3 +18,38 @@
 .botaoTeste{
     position: absolute;left: 800px; top: 10px;
 }
+
+.positionAdd{
+    position: absolute;left: 800px; top: 300px;
+}
+.positionPr{
+    position: absolute;left: 800px; top: 400px;
+}
+button {
+    color: #002b5c;
+    text-align: center;
+    font-family: "Fredoka One";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    letter-spacing: 0px;
+    line-height: 1.3;
+    border-bottom-color: #000000;
+    border-top-color: #000000;
+    border-left-color: #000000;
+    border-right-color: #000000;
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-width: 0px;
+    border-top-width: 0px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 10px;
+    text-decoration: none;
+    box-shadow: 1px 10px 10px 0px rgba(0, 0, 0, 0.24);
+    background-color: #ffbe59;
+  }
+

@@ -1,0 +1,19 @@
+.posicaProduto{
+    position: absolute;left: 500px; top: 50px;
+}
+.produto-label{
+    color: #ffbe59;
+    text-align: center;
+    font-family: "Fredoka One";
+    font-size: 26px;
+    letter-spacing: 0px;
+    line-height: 1;
+    position: absolute;left: 500px; top: 0px;
+}
+.posicaobutton{
+    position: absolute;left: 900px; top: 45px;
+}
+
+.positionSave{
+    position: absolute;left: 1200px; top: 45px;
+}

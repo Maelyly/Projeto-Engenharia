@@ -1,4 +1,4 @@
-Table {
+.wTable {
     color: #002b5c;
     text-align: left;
     font-family: "Fredoka One";
@@ -26,5 +26,12 @@ Table {
     position: absolute; top: 200px;
     max-width: 50%;
     
+  }
+  
+  .pagina{
+    position:absolute; top: 300px;
+  }
+  head{
+    background-color: #ffbe59 !important;
   }
   
