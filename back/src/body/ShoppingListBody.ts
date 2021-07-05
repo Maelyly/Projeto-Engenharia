@@ -53,5 +53,7 @@ class ShoppingListBody {
 		}
 		return this.shoppingListRepository.findOne(user)
 	}
+
+	
 }
 export { ShoppingListBody };

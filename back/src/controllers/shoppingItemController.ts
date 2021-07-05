@@ -29,6 +29,15 @@ class ShoppingItemController {
 		return response.json(await sib.listSI);
 	}
 
+    async listbyyear(request: Request, response: Response): Promise<Response>{
+		const sib = new ShoppingItemBody();
+		return response.json(await sib.listbyyear(request.body));
+	}
+
+	async listbymonth(request: Request, response: Response): Promise<Response>{
+		const sib = new ShoppingItemBody();
+		return response.json(await sib.listbymonth(request.body));
+	}
 	
 }
 

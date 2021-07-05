@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { IExpenseData } from '../interfaces/Expense';
-import { ExpenseBody } from '../body/Expense';
+import { ExpenseBody } from '../body/ExpenseBody';
 import { Expense } from '../entities/Expense';
 
 
