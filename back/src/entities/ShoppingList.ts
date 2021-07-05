@@ -1,4 +1,4 @@
-import { Entity, PrimaryColumn, Column, CreateDateColumn, ManyToOne, OneToMany, OneToOne } from 'typeorm';
+import { Entity, PrimaryColumn, Column, CreateDateColumn, ManyToOne, OneToMany, OneToOne, JoinColumn } from 'typeorm';
 import { v4 as uuid } from 'uuid';
 import { ShoppingItem } from './ShoppingItem';
 import { User } from './User';
@@ -11,7 +11,8 @@ class ShoppingList {
 	@Column({type: "double"})
 	total_expenses: number;
 
-	@OneToOne(()=>User, user => user.shoppinglist)
+	@OneToOne(()=>User)
+	@JoinColumn()
 	owner: User;
 
 	@Column({type: "int"})

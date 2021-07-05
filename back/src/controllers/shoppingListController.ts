@@ -25,15 +25,12 @@ class ShoppingListController {
 		
 	}
 
-	async getList(token: string){
-		const ab = new AuthBody()
-		const slb = new ShoppingListBody();
-		const user = ab
-	}
+	
 
-	async list(request: Request, response: Response): Promise<Response>{
-		const productsbody = new ShoppingListBody();
-		return response.json(await productsbody.listItems());
+	async list(request: Request, response: Response): Promise<Response> {
+		const { token } = request.body;
+		const slb = new ShoppingListBody();
+		return response.json(await slb.getList(token));
 	}
 
 

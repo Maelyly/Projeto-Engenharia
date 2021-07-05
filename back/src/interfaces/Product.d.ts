@@ -1,5 +1,5 @@
 export interface IProductData {
-	name: string;
+	name: any;
 	price: number;
 	category: string;
 	

@@ -25,8 +25,6 @@ class Product {
    @CreateDateColumn()
    expiration_date: Date;
 
-   @OneToMany(()=>Item, item => item.products)
-   items: Item[];
 
  
 

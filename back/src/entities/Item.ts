@@ -1,4 +1,4 @@
-import { Entity, PrimaryColumn, Column, CreateDateColumn, ManyToOne } from 'typeorm';
+import { Entity, PrimaryColumn, Column, CreateDateColumn, ManyToOne, ManyToMany } from 'typeorm';
 import { v4 as uuid } from 'uuid';
 import { Product } from './Product';
 
@@ -7,7 +7,7 @@ class Item {
 	@PrimaryColumn()
 	id: string;
 
-    @ManyToOne(()=>Product, product => product.items)
+    @ManyToOne(()=>Product, product => product)
     products: Product;
 
 	@Column({type: "int"})
@@ -18,6 +18,7 @@ class Item {
 
 	@Column({type: "double"})
     total_price: number;
+
 
 	constructor() {
 		if (!this.id) {

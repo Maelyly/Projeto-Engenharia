@@ -27,8 +27,6 @@ class User {
 	@ManyToOne(()=>Family, family => family.user)
 	family:Family;
 	
-	@OneToOne(()=>ShoppingList, shoppinglisty => shoppinglisty.owner)
-	shoppinglist:ShoppingList;
 
 	@OneToMany(()=>ShoppingItem, shop => shop.admin)
 	shoppingitems: ShoppingItem[];

@@ -29,7 +29,7 @@ class UsersBody {
 
 		if (userExists) return false;
 
-		const user = this.usersRepository.create({email,name,passwordHash: this.hashPassword(password),user_name,family,shoppinglist,shoppingitems});
+		const user = this.usersRepository.create({email,name,passwordHash: this.hashPassword(password),user_name,family,shoppingitems});
 
 		await this.usersRepository.save(user);
 

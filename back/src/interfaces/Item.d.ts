@@ -1,8 +1,5 @@
+
 export interface IItemData {
-	name: string;
+	products: any;
 	quant: number;
-	id_product: string;
-	total_price: number;
-	
-	
 }

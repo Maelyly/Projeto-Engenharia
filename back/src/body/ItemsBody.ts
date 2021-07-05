@@ -3,6 +3,8 @@ import { Item } from '../entities/Item';
 import { ItemRepository } from '../repositories/ItemsRepository';
 import { IItemData } from '../interfaces/Item';
 import { ProductRepository } from '../repositories/ProductsRepository';
+import { Product } from '../entities/Product';
+import { ProductsBody } from './ProductsBody';
 
 
 class ItemsBody {
@@ -16,15 +18,18 @@ class ItemsBody {
 	
 
 	async create(itemData: IItemData) {
-		const {  name, quant,id_product,total_price } = itemData;
+		const {  products,quant } = itemData;
 
-		const itemExists = await this.findByItemName(name);
-		const productExist = await this.findByProductName(name);
-
+		const itemExists = await this.findByItem(products, quant);
+		const pb = new ProductsBody();
+		console.log(`log do products em itemsbody ${products}`)
+		const p = await pb.findByProductName(products)
+		console.log(`log do p ${p}`)
+		if (!p) return false
 		if (itemExists) return false;
 		//if (productExist) return true;
-
-		const item = this.itemsRepository.create({name,quant,id_product,total_price});
+		const total_price = p.price*quant
+		const item = this.itemsRepository.create({products:p,quant,total_price});
 
 		await this.itemsRepository.save(item);
 
@@ -35,8 +40,8 @@ class ItemsBody {
 		return await this.itemsRepository.query(`SELECT * FROM items`);
 	}
 
-	async findByItemName(itemname: string) {
-		return this.itemsRepository.findOne(itemname);
+	async findByItem(product: Product,quant: number) {
+		return this.itemsRepository.findOne({products: product, quant: quant});
 	}
 	async findByProductName(productname: string) {
 		return this.productsRepository.findOne(productname);

@@ -33,7 +33,7 @@ class ProductsBody {
 	}
 
 	async findByProductName(productname: string) {
-		return this.productsRepository.findOne(productname);
+		return this.productsRepository.findOne({name:productname});
 	}
 }
 

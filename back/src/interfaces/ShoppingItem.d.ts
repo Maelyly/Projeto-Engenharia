@@ -3,5 +3,5 @@ export interface IShoppingItemData {
 	value_total: number;
     admin: User;
     editor:boolean;
-	shoppinglist: ShoppingList
+	shoppinglist: ShoppingList;
 }

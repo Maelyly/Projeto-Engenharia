@@ -25,8 +25,8 @@ class ShoppingItemController {
 	}
 
 	async list(request: Request, response: Response): Promise<Response>{
-		const productsbody = new ShoppingItemBody();
-		return response.json(await productsbody.listItems());
+		const sib = new ShoppingItemBody();
+		return response.json(await sib.listSI);
 	}
 
 	

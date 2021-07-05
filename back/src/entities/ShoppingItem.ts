@@ -1,5 +1,6 @@
-import { Entity, PrimaryColumn, Column, CreateDateColumn, ManyToOne} from 'typeorm';
+import { Entity, PrimaryColumn, Column, CreateDateColumn, ManyToOne, ManyToMany, JoinColumn, JoinTable} from 'typeorm';
 import { v4 as uuid } from 'uuid';
+import { Item } from './Item';
 import { ShoppingList } from './ShoppingList';
 import { User } from './User';
 
@@ -25,6 +26,11 @@ class ShoppingItem {
 
 	@ManyToOne(()=>ShoppingList, list => list.shoppingitems)
 	shoppinglist: ShoppingList;
+
+	@ManyToMany(() => Item)
+	@JoinTable()
+	items: Item[]
+
 
 	constructor() {
 		if (!this.id) {

@@ -32,8 +32,8 @@ class UsersController {
 }
 
 function cleanUser(user: User) {
-	const { email, name,user_name, createdAt,family,shoppinglist,shoppingitems } = user;
-	return { email, name,user_name, createdAt,family,shoppinglist,shoppingitems };
+	const { email, name,user_name, createdAt,family,shoppingitems } = user;
+	return { email, name,user_name, createdAt,family,shoppingitems };
 }
 
 export { UsersController };
