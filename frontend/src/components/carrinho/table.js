@@ -8,6 +8,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
+import api from '../../services/api';
 
 
 
@@ -110,15 +111,24 @@ export default function StickyHeadTable() {
 
     }
 
-    function handleCLick(event){
+    async function handleCLick(event){
         event.preventDefault();
-      const data = {
-            name : produto,
-            quantidade : 12,
-            preço : 100,
-            categoria : 'comida'
+
+        const data = {
+          name : produto,
+      }
+        console.log(data); 
+        const response = await api.post('/getproducts', data)
+        console.log(response);
+        console.log(response.data);
+
+        const produtoT = {
+          name : response.data.name,
+          preço : response.data.price,
+          quantidade: 1,
+          categoria : response.data.category
         }
-       addProduto(data);
+       addProduto(produtoT);
     }
   
 

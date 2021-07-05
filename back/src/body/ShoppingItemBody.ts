@@ -24,7 +24,10 @@ class ShoppingItemBody {
 		
 	}
 
-	async addToSI(id:string, item:Item){
+	async addToSI(id:string, itemId:string){
+		const ib = new ItemsBody()
+		const item = await ib.findById(id)
+		if(!item) return false
 		const si = await this.shoppingItemRepository.findOne({id:id})
 		si.items.push(item)
 	}

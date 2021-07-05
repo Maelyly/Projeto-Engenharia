@@ -7,7 +7,7 @@ import { ProductsBody } from '../body/ProductsBody';
 class ProductsController {
 	async create(request: Request, response: Response): Promise<Response> {
 		const {name,category,price}: IProductData = request.body;
-
+		
 		const productsbody = new ProductsBody();
 
 		const product = await productsbody.create({name,category,price});
@@ -28,6 +28,18 @@ class ProductsController {
 		return response.json(await productsbody.listProducts());
 	}
 
+	async getProduct(request: Request, response: Response): Promise<Response>{
+		const {name}: IProductData = request.body;
+		
+		const pb = new ProductsBody();
+		
+		const r = await pb.findByProductName(name)
+		
+		if(r) return response.json(r)
+		return response
+				.status(401)
+				.send({message : 'produto não existe'});
+	}
 	
 }
 

@@ -26,5 +26,6 @@ routes.post('/items', itemsController.create);
 routes.get('/items', itemsController.list);
 routes.post('/products', productsController.create);
 routes.get('/products', productsController.list);
+routes.post('/getproducts', productsController.getProduct);
 
 export { routes };

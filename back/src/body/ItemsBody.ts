@@ -43,6 +43,10 @@ class ItemsBody {
 	async findByItem(product: Product,quant: number) {
 		return this.itemsRepository.findOne({products: product, quant: quant});
 	}
+	async findById(id: string) {
+		return this.itemsRepository.findOne({id: id});
+	}
+
 	async findByProductName(productname: string) {
 		return this.productsRepository.findOne(productname);
 	}

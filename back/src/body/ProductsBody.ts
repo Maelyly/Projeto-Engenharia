@@ -32,8 +32,9 @@ class ProductsBody {
 		return await this.productsRepository.query(`SELECT * FROM product`);
 	}
 
-	async findByProductName(productname: string) {
-		return this.productsRepository.findOne({name:productname});
+	async findByProductName(name: string) {
+		const p = await this.productsRepository.findOne({name: name});
+		return p
 	}
 }
 

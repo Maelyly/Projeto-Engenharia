@@ -48,7 +48,7 @@ export default function LoginForm(){
         <form className = "email-box" onSubmit= {handleSubmit}>
         <label>
             <p className = "email-label">Nome de Usuario</p>
-            <input type="text"  className= "posicaoEmail" onChange= {changeHandlerEmail}/>
+            <input type="text"  className= "positionEmail" onChange= {changeHandlerEmail}/>
         </label>
         <label>
             <p className = "password-label">Senha</p>
