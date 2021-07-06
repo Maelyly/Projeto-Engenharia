@@ -40,7 +40,7 @@ class ShoppingItemController {
 	async addItem(request: Request, response: Response): Promise<Response>{
 		const sib = new ShoppingItemBody()
 		let requi = request.body
-		const ret = sib.addItemToSI(requi.siid, requi.itemid)
+		const ret = await sib.addItemToSI(requi.siid, requi.itemid)
 		return response.json(ret)
 	}
 

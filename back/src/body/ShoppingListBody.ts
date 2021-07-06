@@ -29,6 +29,8 @@ class ShoppingListBody {
 		return item;
 	}
 
+	
+
 	/*async createWithoutSaving(itemData: IShoppingListData) {
 		const { total_expenses,owner,,shoppingitems } = itemData;
 		
@@ -91,12 +93,17 @@ class ShoppingListBody {
 
 	async getList(token: string){
 		const ab = new AuthBody()
-		const slb = new ShoppingListBody();
-		const user = ab.checkToken(token)
+		console.log('entrando no checktoken')
+		let user = await ab.checkToken(token)
+		console.log('saindo, user logo abaixo')
+		console.log(user.user_name)
+		user = user.user_name
 		if (!user.shoppingList){
-			this.create({ owner: user.user_name })
+			await this.create({ owner: user})
 		}
-		return this.shoppingListRepository.findOne(user)
+		const ub = new UsersBody()
+		const objuser = await ub.findByUser_name(user)
+		return await this.shoppingListRepository.findOne({owner:objuser},{relations:["shoppingitems"]})
 	}
 }
 export { ShoppingListBody };
