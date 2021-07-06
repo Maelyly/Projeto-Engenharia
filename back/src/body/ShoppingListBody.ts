@@ -105,5 +105,7 @@ class ShoppingListBody {
 		const objuser = await ub.findByUser_name(user)
 		return await this.shoppingListRepository.findOne({owner:objuser},{relations:["shoppingitems"]})
 	}
+
+	
 }
 export { ShoppingListBody };

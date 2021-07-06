@@ -27,7 +27,6 @@ class UsersController {
 		const usersbody = new UsersBody();
 		return response.json(await usersbody.listUsers());
 	}
-
 	
 }
 

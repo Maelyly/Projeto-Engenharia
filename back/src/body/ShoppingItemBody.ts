@@ -9,6 +9,7 @@ import { ShoppingListBody } from './ShoppingListBody';
 import { UsersBody } from './UsersBody';
 
 
+
 class ShoppingItemBody {
 	private shoppingItemRepository: Repository<ShoppingItem>;
 
@@ -91,8 +92,8 @@ class ShoppingItemBody {
 		.of({id})
 		.loadMany() 
 		console.log(ret)
-		return ret
-	}
+		return ret}
+
 
 
 	async listSI(){
@@ -103,6 +104,21 @@ class ShoppingItemBody {
 		return this.shoppingItemRepository.findOne({id})
 	}
 
+	async listbyyear(year:String){ 
+		let date1 = new Date(year+"-01-01");
+		console.log(date1)
+		let date2 = new Date(year+"-12-31");
+		//return (await getConnection().createQueryBuilder().select("*").from(ShoppingItem, "shoppingitem").where("shoppingitem.date_shop < :date", { date: date1 }).andWhere("shoppingitem.date_shop >= :date", { date: date2 }));
+		return await this.shoppingItemRepository.query(`SELECT * FROM shoppingItem WHERE date_shop BETWEEN "${date1}" AND "${date2}"`);
+	}
+	async listbymonth(month:String){ 
+		console.log(month)
+		let date1 = new Date("2021-"+month+"-01");
+		console.log("2021-"+month+"-01")
+        let date2 = new Date("2021-"+month+"-31");
+		return await this.shoppingItemRepository.query(`SELECT * FROM shoppingItem WHERE date_shop BETWEEN "${date1}" AND "${date2}"`);
+	
+	}
 	
 }
 

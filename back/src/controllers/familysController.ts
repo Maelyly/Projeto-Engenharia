@@ -1,7 +1,9 @@
 import { Request, Response } from 'express';
 import { Family } from '../entities/Family';
 import { FamilyBody } from '../body/FamilysBody';
-import { IFamilyData } from '../interfaces/family';
+import { IFamilyData } from '../interfaces/Family';
+import { IUserData } from '../interfaces/User';
+
 
 
 class FamilyController {
@@ -25,10 +27,19 @@ class FamilyController {
 
 	async list(request: Request, response: Response): Promise<Response>{
 		const familybody = new FamilyBody();
-		return response.json(await familybody.listItems());
+		return response.json(await familybody.listfamily());
 	}
-
-	
+   
+	async adduser(request: Request, response: Response): Promise<Response>{
+		const { user,id } = request.body;
+		const familybody = new FamilyBody();
+		return response.json(await familybody.addToFamily(id,user));
+	}
+	async returnfamily(request: Request, response: Response): Promise<Response>{
+		const { id } = request.body;
+		const familybody = new FamilyBody();
+		return response.json(await familybody.returnFamily(id));
+	}
 }
 
 function cleanFamily(family2: Family) {
