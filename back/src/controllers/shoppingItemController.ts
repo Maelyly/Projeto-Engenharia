@@ -7,11 +7,11 @@ import { IShoppingItemData } from '../interfaces/ShoppingItem';
 
 class ShoppingItemController {
 	async create(request: Request, response: Response): Promise<Response> {
-		const {value_total_shop,value_total,admin,editor, shoppinglist}: IShoppingItemData = request.body;
+		const { editor,slid }: IShoppingItemData = request.body;
 
 		const productsbody = new ShoppingItemBody();
 
-		const product = await productsbody.create({ value_total_shop,value_total,admin,editor, shoppinglist });
+		const product = await productsbody.create({ editor,slid });
 		if (product){
 			const responseData = cleanProduct(product);
 			return response.json(responseData);
@@ -26,15 +26,30 @@ class ShoppingItemController {
 
 	async list(request: Request, response: Response): Promise<Response>{
 		const sib = new ShoppingItemBody();
-		return response.json(await sib.listSI);
+		return response.json(await sib.listSI());
+	}
+
+	async loadSI(request: Request, response: Response): Promise<Response> {
+		let ldata = request.body
+		const slb = new ShoppingItemBody()
+		ldata = ldata.slid
+		let ret = await slb.loadSI(ldata)
+		return response.json(ret)
+	}
+
+	async addItem(request: Request, response: Response): Promise<Response>{
+		const sib = new ShoppingItemBody()
+		let requi = request.body
+		const ret = sib.addItemToSI(requi.siid, requi.itemid)
+		return response.json(ret)
 	}
 
 	
 }
 
 function cleanProduct(product: ShoppingItem) {
-	const {value_total_shop,value_total,admin,editor} = product;
-	return {value_total_shop,value_total,admin,editor};
+	const {admin,editor} = product;
+	return {admin,editor};
 }
 
 export { ShoppingItemController };

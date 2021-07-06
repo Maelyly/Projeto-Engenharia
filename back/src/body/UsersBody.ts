@@ -1,10 +1,11 @@
-import { getCustomRepository, Repository } from 'typeorm';
+import { getConnection, getCustomRepository, Repository } from 'typeorm';
 import { User } from '../entities/User';
 import { UsersRepository } from '../repositories/UsersRepository';
 import { IUserData } from '../interfaces/User';
 import { hashSync, genSaltSync } from 'bcrypt';
 import { ShoppingListBody } from './ShoppingListBody';
 import { ShoppingItemBody } from './ShoppingItemBody';
+import { ShoppingItem } from '../entities/ShoppingItem';
 
 
 class UsersBody {
@@ -23,17 +24,23 @@ class UsersBody {
 	async create(userData: IUserData) {
 		const { email, name, password, user_name } = userData;
 		let family = null
-		let shoppinglist = null
-		let shoppingitems = null
 		const userExists = await this.findByUser_name(user_name);
 
 		if (userExists) return false;
-
-		const user = this.usersRepository.create({email,name,passwordHash: this.hashPassword(password),user_name,family,shoppingitems});
+		let shoppingitems: ShoppingItem[] = []
+		const user = this.usersRepository.create({email,name,passwordHash: this.hashPassword(password),user_name,family,shoppingitems:null});
 
 		await this.usersRepository.save(user);
 
 		return user;
+	}
+
+	async addSI(user_name:string,si:ShoppingItem){
+		await getConnection()
+			.createQueryBuilder()
+			.relation(ShoppingItem, "items")
+			.of({user_name})
+			.add(si)
 	}
 	
 	async update(username:string, update:any){

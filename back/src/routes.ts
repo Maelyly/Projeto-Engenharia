@@ -4,6 +4,8 @@ import { AuthController } from './controllers/AuthController';
 import { ItemsController } from './controllers/itemsController';
 import { ProductsController } from './controllers/productsController';
 import './database';
+import { ShoppingListController } from './controllers/shoppingListController';
+import { ShoppingItemController } from './controllers/shoppingItemController';
 
 const routes = Router();
 
@@ -11,6 +13,8 @@ const usersController = new UsersController();
 const authController = new AuthController();
 const itemsController = new ItemsController();
 const productsController = new ProductsController();
+const slc = new ShoppingListController()
+const sic = new ShoppingItemController()
 
 routes.get('/', (request, response) => {
 	return response.json({
@@ -27,5 +31,13 @@ routes.get('/items', itemsController.list);
 routes.post('/products', productsController.create);
 routes.get('/products', productsController.list);
 routes.post('/getproducts', productsController.getProduct);
+routes.get('/sl', slc.list)
+routes.post('/sl', slc.create)
+routes.get('/silist', sic.list)
+routes.post('/si', sic.create)
+routes.post('/slo', slc.showOwner)
+routes.post('/loadsl',slc.loadSL)
+routes.post('/loadsi',sic.loadSI)
+routes.post('/additem', sic.addItem)
 
 export { routes };

@@ -19,11 +19,12 @@ class ItemsBody {
 
 	async create(itemData: IItemData) {
 		const {  products,quant } = itemData;
-
-		const itemExists = await this.findByItem(products, quant);
 		const pb = new ProductsBody();
-		console.log(`log do products em itemsbody ${products}`)
 		const p = await pb.findByProductName(products)
+		const itemExists = await this.findByItem(p, quant);
+		
+		console.log(`log do products em itemsbody ${products}`)
+		
 		console.log(`log do p ${p}`)
 		if (!p) return false
 		if (itemExists) return false;
