@@ -33,6 +33,7 @@ routes.get('/products', productsController.list);
 routes.post('/getproducts', productsController.getProduct);
 routes.get('/sl', slc.list)
 routes.post('/sl', slc.create)
+routes.post('/getsl',slc.getList)
 routes.get('/silist', sic.list)
 routes.post('/si', sic.create)
 routes.post('/slo', slc.showOwner)

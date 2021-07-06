@@ -17,15 +17,16 @@ const columns = [
   { id: 'name',
    label: 'Name',
     minWidth: 170 ,
+    
   },
   { 
-    id: 'preço', 
+    id: 'value_total', 
     label: 'preço', 
     minWidth: 100 
     
   },
   {
-    id: 'data',
+    id: 'date_shop',
     label: 'data',
     minWidth: 170,
     align: 'right',
@@ -87,12 +88,16 @@ export default function StickyHeadTable() {
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
-  const [shop,setShop] = useState(rows);
+  const [shop,setShop] = useState([]);
   const austCtx = useContext(AuthContext);
+  const token = JSON.parse(localStorage.getItem('token'));
+  
 
   async function request(){
-    const response = await api.post('', austCtx.token);
-    setShop(response.data);
+    const response = await api.post('/getsl',token);
+    console.log(response);
+    localStorage.setItem('slid',response.data.id)
+    setShop(response.data.shoppingitems);
   }
 
   useEffect(()=> {
@@ -134,8 +139,9 @@ export default function StickyHeadTable() {
           <TableBody >
             {shop.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
               return (
-                <TableRow onClick={handleClick} hover role="checkbox" tabIndex={-1} key={row.code}>
+                <TableRow onClick={handleClick} hover role="checkbox" tabIndex={-1} key={row.id}>
                   {columns.map((column) => {
+
                     const value = row[column.id];
                     return (
                       <TableCell key={column.id} align={column.align}>

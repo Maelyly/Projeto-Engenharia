@@ -9,6 +9,8 @@ import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import api from '../../services/api';
+import Button from "@material-ui/core/Button";
+import ButtonGroup from "@material-ui/core/ButtonGroup";
 
 
 
@@ -102,6 +104,7 @@ export default function StickyHeadTable() {
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [shop,setShop] = useState([]);
   const [produto,setProduto] = useState();
+  const [count, setCount] = useState(0);
     
     function changeHandleProduto(event){
         setProduto(event.target.value);
@@ -111,21 +114,55 @@ export default function StickyHeadTable() {
 
     }
 
+    function handleIncrement(event){
+       event.preventDefault()
+        setCount(count + 1 );
+    };
+  
+    function handleDecrement(event){
+      event.preventDefault()
+      if(count > 0){
+        setCount(count - 1 );
+      }
+    };
+
     async function handleCLick(event){
         event.preventDefault();
 
         const data = {
           name : produto,
       }
-        const response = await api.post('/getproducts', data)
+        if(count > 0){
+          const response = await api.post('/getproducts', data)
+          const item ={
+            products: response.data.name,
+            quant: count
+          }
+          const response2 =  await api.post('/items', item)
+          console.log(response2)
+          const produtoT = {
+            name : response.data.name,
+            preço : response.data.price,
+            quantidade: count,
+            categoria : response.data.category
+          }
 
-        const produtoT = {
-          name : response.data.name,
-          preço : response.data.price,
-          quantidade: 1,
-          categoria : response.data.category
+          const data = {
+            siid: response2.data.id, 
+            itemid: localStorage.getItem('slid')
+          }
+          try{
+            const response3 = await api.post('/additem',data)
+          }catch(error){
+            
+          }
+          addProduto(produtoT);
         }
-       addProduto(produtoT);
+          else{
+            alert('escolha a quantidade');
+          
+        
+          }
     }
   
 
@@ -198,6 +235,11 @@ export default function StickyHeadTable() {
           <button className="posicaobutton" onClick={handleCLick}>
             Adicionar
           </button>
+          <ButtonGroup className="buttonG">
+            <button onClick={handleIncrement}>+</button>
+            <button disabled={true}>{count}</button>
+            <button onClick={handleDecrement}>-</button>
+          </ButtonGroup>
     </form>
     <button className='positionSave' onClick={handleSave}>
             Salvar

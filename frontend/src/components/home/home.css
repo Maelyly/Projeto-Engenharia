@@ -56,7 +56,13 @@ button {
   .tableI{
     float: right;
   }
-  .tableC{
-
-  }
+ .bVindo{
+    color: #ffbe59;
+    text-align: left;
+    font-family: "Fredoka One";
+    font-size: 28px;
+    letter-spacing: 0px;
+    line-height: 1;
+    position: absolute;left: 1000px; top: 0px;
+ }
 

@@ -1,5 +1,5 @@
 .posicaProduto{
-    position: absolute;left: 500px; top: 50px;
+    position: absolute;left: 400px; top: 50px;
 }
 .produto-label{
     color: #ffbe59;
@@ -8,12 +8,20 @@
     font-size: 26px;
     letter-spacing: 0px;
     line-height: 1;
-    position: absolute;left: 500px; top: 0px;
+    position: absolute;left: 400px; top: 0px;
+}
+
+.buttonG{
+    position: absolute;left: 800px; top: 45px;
 }
 .posicaobutton{
-    position: absolute;left: 900px; top: 45px;
+    position: absolute;left: 1000px; top: 45px;
 }
 
 .positionSave{
     position: absolute;left: 1200px; top: 45px;
+}
+
+.buttonI{
+    position: absolute;left: 1050px; top: 45px;
 }

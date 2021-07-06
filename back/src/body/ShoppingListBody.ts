@@ -90,13 +90,15 @@ class ShoppingListBody {
 	}
 
 	async getList(token: string){
-		const ab = new AuthBody()
-		const slb = new ShoppingListBody();
-		const user = ab.checkToken(token)
-		if (!user.shoppingList){
-			this.create({ owner: user.user_name })
-		}
-		return this.shoppingListRepository.findOne(user)
-	}
+        const ab = new AuthBody()
+        let user = await ab.checkToken(token)
+        user = user.user_name
+        if (!user.shoppingList){
+            await this.create({ owner: user})
+        }
+        const ub = new UsersBody()
+        const objuser = await ub.findByUser_name(user)
+        return await this.shoppingListRepository.findOne({owner:objuser},{relations:["shoppingitems"]})
+    }
 }
 export { ShoppingListBody };

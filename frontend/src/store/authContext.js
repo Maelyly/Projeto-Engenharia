@@ -16,12 +16,14 @@ export function AuthContextProvider(props){
 
     function loginHandler(token){
         setToken(token);
-        localStorage.setItem('token',token);
+        const tk = JSON.stringify(token)
+        localStorage.setItem('token',tk);
     };
 
     function logoutHandle(){
         setToken(null);
         localStorage.removeItem('token');
+        localStorage.removeItem('slid');
     };
 
     const contextValue = {

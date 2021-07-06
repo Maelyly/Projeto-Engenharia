@@ -34,6 +34,7 @@ export default function LoginForm(){
             const response = await api.post('auth/login', userData)
             authCtx.login(response.data)
             userCtx.login(userData.user_name)
+            
             history.replace('/home')
             console.log('Response:', response.data);
             console.log(response)
