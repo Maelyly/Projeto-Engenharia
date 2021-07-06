@@ -43,7 +43,7 @@ const columns = [
 
 
 
-function createData(name, quantidade, preço, categoria) {
+/*function createData(name, quantidade, preço, categoria) {
   
   return { name,quantidade, preço,categoria };
 }
@@ -59,9 +59,9 @@ const rows = [
   createData('pão',15,5040,'comida'),
   createData('pão',15,5040,'comida'),
   createData('pão',15,5040,'comida'),
-  */
+  
  
-];
+];*/
 
 const useStyles = makeStyles({
   root: {
@@ -100,7 +100,7 @@ export default function StickyHeadTable() {
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
-  const [shop,setShop] = useState(rows);
+  const [shop,setShop] = useState([]);
   const [produto,setProduto] = useState();
     
     function changeHandleProduto(event){
@@ -117,10 +117,7 @@ export default function StickyHeadTable() {
         const data = {
           name : produto,
       }
-        console.log(data); 
         const response = await api.post('/getproducts', data)
-        console.log(response);
-        console.log(response.data);
 
         const produtoT = {
           name : response.data.name,

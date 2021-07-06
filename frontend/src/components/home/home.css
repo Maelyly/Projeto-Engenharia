@@ -20,10 +20,10 @@
 }
 
 .positionAdd{
-    position: absolute;left: 800px; top: 300px;
+    position: absolute;left: 20px; top: 150px;
 }
 .positionPr{
-    position: absolute;left: 800px; top: 400px;
+    position: absolute;left: 300px; top: 150px;
 }
 button {
     color: #002b5c;
@@ -51,5 +51,12 @@ button {
     text-decoration: none;
     box-shadow: 1px 10px 10px 0px rgba(0, 0, 0, 0.24);
     background-color: #ffbe59;
+  }
+
+  .tableI{
+    float: right;
+  }
+  .tableC{
+
   }
 

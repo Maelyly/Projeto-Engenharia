@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import logo from './../../images/logo/logo.png';
 import './home.css'
 import StickyHeadTable from './compra';
@@ -6,6 +6,8 @@ import AuthContext from '../../store/authContext';
 import api from '../../services/api';
 import {Link, useHistory } from "react-router-dom";
 import UserContext from '../Users/user';
+import TransitionsModal from '../modal/modal';
+import TableItem from './tableI';
 
 
 export default function Home() {
@@ -14,17 +16,18 @@ export default function Home() {
   const history = useHistory();
   const userCtx = useContext(UserContext)
  
+ 
 
   function logoutHandler(){
     austCtx.logout();
     history.replace('/login')
   };
   
-  async function testeToken(){
+  /*async function testeToken(){
     const response = await api.post('token', austCtx.token);
     console.log(austCtx.token)
     console.log(response.data)
-  }
+  }*/
   
   return(
     <div>
@@ -42,15 +45,17 @@ export default function Home() {
         adicionar compra
       </button>
       </Link>
-      <button className= "positionPr" onClick = {logoutHandler}>
-        adicionar produto
-      </button>
+
+      <TransitionsModal/>
+      
     </div>
-
-
     <img src={logo} alt="logo" className="LogoHome" />
-
-      <StickyHeadTable/>
+      <div className="tableI">
+        <TableItem/>
+      </div>
+      <div className="tableC">
+        <StickyHeadTable/>
+      </div>
     </div>
     
   );

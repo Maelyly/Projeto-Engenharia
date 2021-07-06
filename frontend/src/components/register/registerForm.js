@@ -1,7 +1,6 @@
 import React,{useEffect,useState} from 'react';
 import './register.css';
-import {Link } from "react-router-dom";
-import axios from 'axios';
+import {Link, useHistory } from "react-router-dom";
 import api from '../../services/api';
 
 export default function RegisterForm(){
@@ -10,6 +9,7 @@ export default function RegisterForm(){
     const [email,setEmail] = useState('');
     const [senha,setSenha] = useState('');
     const [senha2,setSenha2] = useState('');
+    const history = useHistory();
     
 
     const changeHandlerNome = (event) => {
@@ -48,7 +48,9 @@ export default function RegisterForm(){
         }
         else{
             const response = await api.post('create/user', userData);
-            console.log('Response:', response.userData);
+            console.log(response);
+            history.replace('/login');
+            
             
         }
     }

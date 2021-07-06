@@ -1,4 +1,4 @@
-import React, {useState,useEffect, useContext} from 'react';
+import React,{useState} from 'react';
 import { createMuiTheme, makeStyles, ThemeProvider,withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
@@ -8,62 +8,79 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
-import "./compra.css";
 import api from '../../services/api';
-import AuthContext from '../../store/authContext';
+
 
 
 const columns = [
   { id: 'name',
    label: 'Name',
     minWidth: 170 ,
+    align: 'left',
+  },
+  { 
+    id: 'quantidade', 
+    label: 'quantidade', 
+    minWidth: 170,
+    align: 'left',
   },
   { 
     id: 'preço', 
     label: 'preço', 
-    minWidth: 100 
+    minWidth: 170 ,
+    align: 'left',
     
   },
   {
-    id: 'data',
-    label: 'data',
-    minWidth: 170,
-    align: 'right',
-    format: (value) => value.toLocaleString('en-US'),
+    id: 'categoria',
+    label: 'categoria',
+    minWidth: 100,
+    align: 'left',
     fontFamily : 'Fredoka One',
   },
 
 ];
 
-function createData(name, preço, data ) {
+
+
+function createData(name, quantidade, preço, categoria) {
   
-  return { name, preço,data };
+  return { name,quantidade, preço,categoria };
 }
 
+
 const rows = [
-  createData('compra',50,'12/10/2021'),
-  createData('compra',200,'12/10/2021'),
-  createData('compra',400,'12/10/2021'),
-  createData('compra',212,'12/10/2021'),
-  createData('compra',500,'12/10/2021'),
-  createData('compra',5040,'12/10/2021'),
+  createData('guarana',5,50,'bebida'),
+  createData('bolo',2,200,'comida'),
+  createData('vinho',1,400,'bebida'),
+  createData('carne',7,212,'comida'),
+  createData('agua',10,500,'bebida'),
+  createData('pão',15,5040,'comida'),
+  createData('pão',15,5040,'comida'),
+  createData('pão',15,5040,'comida'),
+  createData('pão',15,5040,'comida'),
+  
  
 ];
 
 const useStyles = makeStyles({
   root: {
-    width: '40%',
+    width: '100%',
+    marginRight: '0px',
+    marginTop: '00px'
     
     
   },
   container: {
-    maxHeight: 500,
-    marginTop: '200px',
+    maxHeight: 450,
+    
+    
     
     
   },
   body:{
     fontFamily: 'Fredoka One',
+    marginLeft: '680px',
     
   }
   
@@ -83,22 +100,44 @@ const StyledTableCell = withStyles((theme) => ({
 
 
 
-export default function StickyHeadTable() {
+export default function TableItem() {
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
-  const [shop,setShop] = useState(rows);
-  const austCtx = useContext(AuthContext);
+  const [shop,setShop] = useState([]);
+  const [produto,setProduto] = useState();
+    
+    function changeHandleProduto(event){
+        setProduto(event.target.value);
+    }
 
-  async function request(){
-    const response = await api.post('', austCtx.token);
-    setShop(response.data);
+    function handleSave(){
+
+    }
+
+    async function handleCLick(event){
+        event.preventDefault();
+
+        const data = {
+          name : produto,
+      }
+        const response = await api.post('/getproducts', data)
+
+        const produtoT = {
+          name : response.data.name,
+          preço : response.data.price,
+          quantidade: 1,
+          categoria : response.data.category
+        }
+       addProduto(produtoT);
+    }
+  
+
+
+  function addProduto(produto){
+    setShop([produto,...shop]);
   }
-
-  useEffect(()=> {
-    request();
-  },[])
-
+   
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
@@ -108,18 +147,13 @@ export default function StickyHeadTable() {
     setPage(0);
   };
 
-  function handleClick(event){
-    
-    
-  }
-
   return (
     
     <Paper className={classes.root}>
       <TableContainer className={classes.container}>
-        <Table  stickyHeader aria-label="sticky table">
+        <Table onR stickyHeader aria-label="sticky table">
           <TableHead >
-            <TableRow >
+            <TableRow  >
               {columns.map((column) => (
                 <StyledTableCell
                   key={column.id}
@@ -132,9 +166,9 @@ export default function StickyHeadTable() {
             </TableRow>
           </TableHead>
           <TableBody >
-            {shop.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
+            {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
               return (
-                <TableRow onClick={handleClick} hover role="checkbox" tabIndex={-1} key={row.code}>
+                <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
                   {columns.map((column) => {
                     const value = row[column.id];
                     return (
@@ -152,13 +186,15 @@ export default function StickyHeadTable() {
       <TablePagination
         rowsPerPageOptions={[10, 25, 100]}
         component="div"
-        count={rows.length}
+        count={shop.length}
         rowsPerPage={rowsPerPage}
         page={page}
         onChangePage={handleChangePage}
         onChangeRowsPerPage={handleChangeRowsPerPage}
       />
     </Paper>
-    
+      
+ 
+
   );
 }
