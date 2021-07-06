@@ -4,6 +4,7 @@ import { ShoppingItem } from '../entities/ShoppingItem';
 import { IShoppingItemData } from '../interfaces/ShoppingItem';
 import { ShoppingItemRepository } from '../repositories/ShoppingItemRepository';
 import { ItemsBody } from './ItemsBody';
+import { PromoBody } from './PromoBody';
 import { ShoppingListBody } from './ShoppingListBody';
 import { UsersBody } from './UsersBody';
 
@@ -39,12 +40,24 @@ class ShoppingItemBody {
 	}
 
 	async update(id:string){
-		const si = await this.shoppingItemRepository.findOne({id}, {relations:["items"]})
+		const si = await this.shoppingItemRepository.findOne({id}, {relations:["items", "items.products"]})
 		let vt = 0
+		let vtp = 0
+		const pb = new PromoBody()
 		for(let i of si.items){
 			vt += i.total_price
+			let promo = await pb.getPromotionByProduct(i.products)//O ERRO TA NESSE ID, PRECISA SER ID DO PRODUTO, NAO DO ITEM
+			if (!promo){
+				vtp += i.total_price
+			}else{
+				if(i.quant>=promo.min_num){
+					vtp +=i.total_price*promo.promo_perc
+				}else{
+					vtp += i.total_price
+				}
+			}
 		}
-		this.shoppingItemRepository.update({id:si.id}, {value_total:vt})
+		await this.shoppingItemRepository.update({id:si.id}, {value_total:vt, value_total_shop:vtp})
 	}
 
 	async addItemToSI(id:string, itemId:string){

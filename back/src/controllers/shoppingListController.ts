@@ -38,6 +38,14 @@ class ShoppingListController {
 		return response.json(await slb.listSL());
 	}
 
+	async getList (request: Request, response: Response): Promise<Response> {
+		let token = request.body
+		token = token.token
+		const slb = new ShoppingListBody()
+		const ret = await slb.getList(token)
+		return response.json(ret)
+	}
+
 
 	async showOwner(request: Request, response: Response): Promise<Response> {
 		const { owner }: IShoppingListData = request.body;

@@ -17,8 +17,8 @@ class Promo {
 	@Column({type: "double"})
 	promo_perc: number;
 
-	@ManyToOne(()=>Product, Product => Product.id)
-	admin: String;
+	@ManyToOne(()=>Product)
+	prod: Product;
     
 
 	constructor() {

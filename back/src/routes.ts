@@ -6,6 +6,7 @@ import { ProductsController } from './controllers/productsController';
 import './database';
 import { ShoppingListController } from './controllers/shoppingListController';
 import { ShoppingItemController } from './controllers/shoppingItemController';
+import { PromoController } from './controllers/promoController';
 
 const routes = Router();
 
@@ -15,6 +16,7 @@ const itemsController = new ItemsController();
 const productsController = new ProductsController();
 const slc = new ShoppingListController()
 const sic = new ShoppingItemController()
+const pc = new PromoController()
 
 routes.get('/', (request, response) => {
 	return response.json({
@@ -40,5 +42,8 @@ routes.post('/slo', slc.showOwner)
 routes.post('/loadsl',slc.loadSL)
 routes.post('/loadsi',sic.loadSI)
 routes.post('/additem', sic.addItem)
+routes.post('/getsl', slc.getList)
+routes.post('/create/promo', pc.create)
+routes.get('/promo',pc.list)
 
 export { routes };

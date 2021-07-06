@@ -36,6 +36,10 @@ class ProductsBody {
 		const p = await this.productsRepository.findOne({name: name});
 		return p
 	}
+	async findByProductId(id: string) {
+		const p = await this.productsRepository.findOne({id});
+		return p
+	}
 }
 
 export { ProductsBody };
