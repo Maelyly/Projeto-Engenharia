@@ -1,4 +1,5 @@
 import { getCustomRepository, Repository, TransactionAlreadyStartedError, UsingJoinColumnOnlyOnOneSideAllowedError } from 'typeorm';
+import { UsersController } from '../controllers/usersController';
 import { Family } from '../entities/Family';
 import { User } from '../entities/User';
 import { IFamilyData } from '../interfaces/Family';
@@ -9,6 +10,7 @@ import { UsersBody } from './UsersBody';
 class FamilyBody {
 	private familysRepository: Repository<Family>;
 	private usersRepository: Repository<User>;
+	userbody = new UsersBody();
 
 	constructor() {
 		this.familysRepository = getCustomRepository(FamilyRepository);
@@ -41,18 +43,16 @@ class FamilyBody {
 	}
 
 	async addToFamily(id:string, user:User){
-		const si = await this.familysRepository.findOne({id:id});
-		console.log(si);
+		//const si = await this.familysRepository.findOne({id:id});
+		console.log("Id family "+id);
 		console.log(user);
-		if(user.family==null){
-		  //si.user.push(user);
-		  //console.log(si.user);
-		  user.family=si;
-		  console.log(user.family);
-		}else{
-			console.log(user.family);
-		}
-		 
+		this.userbody.update(user.user_name,id);	
+		return user; 
+	}
+
+	async returnFamily(id:string){
+		const si = await this.userbody.findbyfamily(id);			
+		return si;
 	}
 
 	async listfamily(){
@@ -66,7 +66,7 @@ class FamilyBody {
 	async findByUser(name_user: string) {
 		return this.usersRepository.findOne(name_user);
 	}
-
+    
 	
 	
 } 

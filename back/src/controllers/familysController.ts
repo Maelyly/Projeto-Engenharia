@@ -33,10 +33,13 @@ class FamilyController {
 	async adduser(request: Request, response: Response): Promise<Response>{
 		const { user,id } = request.body;
 		const familybody = new FamilyBody();
-        familybody.addToFamily(id,user);
-		return response.json(await familybody.addToFamily(request.body,request.body));
+		return response.json(await familybody.addToFamily(id,user));
 	}
-	
+	async returnfamily(request: Request, response: Response): Promise<Response>{
+		const { id } = request.body;
+		const familybody = new FamilyBody();
+		return response.json(await familybody.returnFamily(id));
+	}
 }
 
 function cleanFamily(family2: Family) {

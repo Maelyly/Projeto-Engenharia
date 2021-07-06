@@ -34,6 +34,7 @@ routes.get('/products', productsController.list);
 routes.post('/listbyyear',shoppingitem.listbyyear);
 routes.post('/listbymonth',shoppingitem.listbymonth);
 routes.get('/family',family.list)
+routes.post('/family/list',family.returnfamily)
 routes.post('/family',family.create)
 routes.post('/family/adduser',family.adduser)
 

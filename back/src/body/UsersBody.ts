@@ -36,12 +36,16 @@ class UsersBody {
 		return user;
 	}
 	
-	async update(username:string, update:any){
-		this.usersRepository.update({user_name:username}, update)
+	async update(user_name:string, id:string){
+		//this.usersRepository.update({user_name:username}, update)
+		this.usersRepository.query(`UPDATE users SET familyId = "${id}" WHERE user_name = "${user_name}"`);
 	}
 
 	async listUsers(){
 		return await this.usersRepository.query(`SELECT * FROM users`);
+	}
+	async findbyfamily(id:string){
+		return await this.usersRepository.query(`SELECT * FROM users WHERE familyId = "${id}"`);
 	}
 
 	async findByUser_name(user_name: string) {
