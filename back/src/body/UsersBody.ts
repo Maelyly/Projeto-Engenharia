@@ -56,6 +56,10 @@ class UsersBody {
 			user_name,
 		});
 	}
+
+	async findByUser_nameWithSl(user_name: string) {
+		return this.usersRepository.findOne({user_name},{relations:[]});
+	}
 }
 
 export { UsersBody };

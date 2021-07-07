@@ -7,7 +7,7 @@ import api from '../../services/api';
 import {Link, useHistory } from "react-router-dom";
 import UserContext from '../Users/user';
 import TransitionsModal from '../modal/modal';
-import TableItem from './tableI';
+import TableItem from './table';
 
 
 export default function Home() {
@@ -65,7 +65,6 @@ export default function Home() {
     </div>
     <img src={logo} alt="logo" className="LogoHome" />
       <div className="tableI">
-        <TableItem/>
       </div>
       <div className="tableC">
         <StickyHeadTable/>

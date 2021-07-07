@@ -12,6 +12,7 @@ import api from '../../services/api';
 import Button from "@material-ui/core/Button";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 import {Link, useHistory } from "react-router-dom";
+import TrashIcon from '@material-ui/icons/Delete';
 
 
 
@@ -37,6 +38,13 @@ const columns = [
   {
     id: 'category',
     label: 'categoria',
+    minWidth: 100,
+    align: 'left',
+    fontFamily : 'Fredoka One',
+  },
+  {
+    id: 'remover',
+    label: 'remover',
     minWidth: 100,
     align: 'left',
     fontFamily : 'Fredoka One',
@@ -126,6 +134,21 @@ export default function StickyHeadTable() {
 
     function handleSave(){
       history.replace('/home')
+    }
+
+    async function handleRemove(id){
+      console.log(id)
+      const data = {
+        itemid: id,
+        siid: localStorage.getItem('siid')
+      }
+      const response = await api.post('/removei', data)
+      console.log(response)
+      const siid = {
+        id: localStorage.getItem('siid')
+      }
+      const response2 = await api.post('/loadsi',siid)
+      addProduto(response2.data.items);
     }
 
     function handleIncrement(event){
@@ -231,8 +254,12 @@ export default function StickyHeadTable() {
                     if(column.id === "products"){
                       value = row[column.id].name
                     }
-                    else if(column.id === "category")
+                    else if(column.id === "category"){
                       value = row["products"].category
+                    }
+                    else if(column.id === "remover"){
+                      value=  <TrashIcon onClick={() => handleRemove(row.id)} />
+                    }
                     return (
                       <TableCell key={column.id} align={column.align}>
                         {column.format && typeof value === 'number' ? column.format(value) : value}

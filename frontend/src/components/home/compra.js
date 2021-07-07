@@ -11,6 +11,9 @@ import TableRow from '@material-ui/core/TableRow';
 import "./compra.css";
 import api from '../../services/api';
 import AuthContext from '../../store/authContext';
+import {Link, useHistory } from "react-router-dom";
+import TrashIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
 
 
 const columns = [
@@ -33,6 +36,23 @@ const columns = [
     format: (value) => value.toLocaleString('en-US'),
     fontFamily : 'Fredoka One',
   },
+  {
+    id: 'apagar',
+    label: 'apagar',
+    minWidth: 170,
+    align: 'right',
+    format: (value) => value.toLocaleString('en-US'),
+    fontFamily : 'Fredoka One',
+  },
+  {
+    id: 'editar',
+    label: 'editar',
+    minWidth: 170,
+    align: 'right',
+    format: (value) => value.toLocaleString('en-US'),
+    fontFamily : 'Fredoka One',
+  },
+
 
 ];
 
@@ -53,7 +73,7 @@ const rows = [
 
 const useStyles = makeStyles({
   root: {
-    width: '40%',
+    width: '80%',
     
     
   },
@@ -91,6 +111,8 @@ export default function StickyHeadTable() {
   const [shop,setShop] = useState([]);
   const austCtx = useContext(AuthContext);
   const token = JSON.parse(localStorage.getItem('token'));
+  const history = useHistory()
+
   
 
   async function request(){
@@ -113,8 +135,23 @@ export default function StickyHeadTable() {
     setPage(0);
   };
 
-  function handleClick(event){
-    
+  async function handleRemove(id){
+    console.log(id)
+    const data = {
+      id: id
+    }
+    const response = await api.post('/removesi', data)
+    console.log(response)
+    const response2 = await api.post('/getsl',token);
+    console.log(response2);
+    localStorage.setItem('slid',response2.data.id)
+    setShop(response2.data.shoppingitems);
+  }
+
+  function handleEdit(id){
+    //console.log(id)
+    localStorage.setItem("siid", id)
+    history.replace("/carrinho")
     
   }
 
@@ -138,19 +175,31 @@ export default function StickyHeadTable() {
           </TableHead>
           <TableBody >
             {shop.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
+              
+              
               return (
-                <TableRow onClick={handleClick} hover role="checkbox" tabIndex={-1} key={row.id}>
+                <TableRow hover role="checkbox" tabIndex={-1} key={row.id}>
                   {columns.map((column) => {
                       let value = row[column.id];
                       if(column.id === "name"){
                         value = "compra"
                       }
+                      else if(column.id === "apagar"){
+                        value=  <TrashIcon onClick={() => handleRemove(row.id)} />
+                        
+                      }
+                      else if(column.id === "editar"){
+                        value = <EditIcon onClick={() => handleEdit(row.id)} />
+                      }
                     return (
-                      <TableCell key={column.id} align={column.align}>
+                      <TableCell  key={column.id} align={column.align}>
                         {column.format && typeof value === 'number' ? column.format(value) : value}
                       </TableCell>
                     );
                   })}
+                 
+                    
+                  
                 </TableRow>
               );
             })}

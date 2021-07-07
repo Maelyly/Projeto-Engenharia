@@ -87,6 +87,27 @@ class ShoppingItemBody {
 		return true
 	}
 
+	async removeItemToSI(id:string, itemId:string){
+		const ib = new ItemsBody()
+
+		const item = await ib.findById(itemId)
+		console.log(item)
+		if(!item) return false
+		try {
+			await getConnection()
+			.createQueryBuilder()
+			.relation(ShoppingItem, "items")
+			.of({id:id})
+			.remove(item)
+		} catch (error) {
+			return false
+		}
+		
+		console.log("chegou aqui")
+		await this.update(id)
+		return true
+	}
+
 	async linkSIToSL(idSI:string, idSL:string){
 		const slb = new ShoppingListBody()
 		//const si = this.findById(idSI)
@@ -111,6 +132,14 @@ class ShoppingItemBody {
 		
 	}
 
+	async removeById(id: string){
+		const si = await this.shoppingItemRepository.findOne({id})
+		console.log(id)
+		console.log(si)
+		if(!si) return false
+		await this.shoppingItemRepository.remove(si)
+		return true
+	}
 
 	async listSI(){
 		return await this.shoppingItemRepository.query(`SELECT * FROM shoppingItem`);

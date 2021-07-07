@@ -46,5 +46,8 @@ routes.post('/getsl', slc.getList)
 routes.post('/create/promo', pc.create)
 routes.get('/promo',pc.list)
 routes.post('/getItem',itemsController.goc)
+routes.post('/removesi',sic.removeById)
+routes.post('/removei',sic.removeItem)
+
 
 export { routes };

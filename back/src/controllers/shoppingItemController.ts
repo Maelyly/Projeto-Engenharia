@@ -44,6 +44,24 @@ class ShoppingItemController {
 		return response.json(ret)
 	}
 
+	async removeItem(request: Request, response: Response): Promise<Response>{
+		const sib = new ShoppingItemBody()
+		let requi = request.body
+		console.log(requi)
+		const ret = await sib.removeItemToSI(requi.siid, requi.itemid)
+		return response.json(ret)
+	}
+
+	async removeById(request: Request, response: Response): Promise<Response>{
+		const sib = new ShoppingItemBody()
+		let id = request.body
+		console.log(`id do controller ${id}`)
+		console.log(id)
+		id = id.id
+		const ret = await sib.removeById(id)
+		return response.json(ret)
+	}
+
 	
 }
 
