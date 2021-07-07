@@ -25,6 +25,9 @@ export default function Routers(){
                     <Route path="/carrinho">
                         <Carrinho />
                     </Route>
+                    <Route path="/">
+                        <Login />
+                    </Route>
                 </Switch>
                 </BrowserRouter>
     </div>
