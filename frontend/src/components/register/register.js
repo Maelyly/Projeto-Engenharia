@@ -1,5 +1,6 @@
 import React from 'react';
 import "./register.css"
+import logo from './../../images/logo/logo.png';
 
 import RegisterForm from './registerForm';
 //import {Us} from "./Users/us";
@@ -14,6 +15,8 @@ export default function Register() {
         <h2 className= "subTitle-Register">
             Crie sua conta
         </h2>
+        <img src={logo} alt="logo" className="Logo" />
+
         <RegisterForm/>
         
         <div className="login-asth">

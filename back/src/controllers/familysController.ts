@@ -14,8 +14,8 @@ class FamilyController {
 
 		const family2 = await familybody.create({name});
 		if (family2){
-			const responseData = cleanFamily(family2);
-			return response.json(responseData);
+			//const responseData = cleanFamily(family2);
+			return response.json(family2);
 		}
 		else{
 			return response

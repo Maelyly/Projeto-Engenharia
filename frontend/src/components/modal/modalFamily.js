@@ -26,9 +26,7 @@ export default function ModalFamilyC() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const [nome, setNome] = useState();
-  const [name_user,setUser] = useState();
-  const [name_user2,setUser2] = useState();
-  const [family,setFamily] = useState([])
+  
   
   
 
@@ -44,28 +42,15 @@ export default function ModalFamilyC() {
     const changeHandlerNome = (event) => {
         setNome(event.target.value);
 }
-    const changeHandlerNome1 = (event) => {
-        setUser(event.target.value);
-}
-    const changeHandlerNome2 = (event) => {
-        setUser2(event.target.value);
-}
+    
 
    
   async function handleSubmit(event){
     event.preventDefault();
-    const user = {
-        name: name_user
-    }
-    const user2 = {
-        name: name_user2
-    }
-    setFamily([...family,user])
-    setFamily([...family,user2])
+    
     
     const data ={
         name: nome,
-        user: family
     }
     console.log(data)
     const response = await api.post("/family", data)
@@ -99,14 +84,6 @@ export default function ModalFamilyC() {
                 <label>
                     <p id="transition-modal-description">Nome da Familia.</p>
                     <input type= "text" onChange ={changeHandlerNome}></input>
-                </label>
-                <label>
-                    <p id="transition-modal-description">Nome de Usuario.</p>
-                    <input type= "text" onChange ={changeHandlerNome1}></input>
-                </label>
-                <label>
-                    <p id="transition-modal-description">Nome de Usuario.</p>
-                    <input type= "text" onChange ={changeHandlerNome2}></input>
                 </label>
                 <button type="submit">
                     criar

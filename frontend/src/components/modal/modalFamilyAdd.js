@@ -26,9 +26,7 @@ export default function ModalFamilyA() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const [nome, setNome] = useState();
-  const [quant, setQuant] = useState();
-  const [percentual, setPercentual] = useState();
-  const [produto,setProduto] = useState();
+  
 
 
   const handleOpen = () => {
@@ -43,26 +41,14 @@ export default function ModalFamilyA() {
         setNome(event.target.value);
 }
 
-    const changeHandlerQtd = (event) => {
-        setQuant(event.target.value);
-}
-
-    const changeHandlerPercentual = (event) => {
-        setPercentual(event.target.value);
-}
-    const changeHandlerProduto = (event) => {
-        setProduto(event.target.value);
-}
 
   async function handleSubmit(event){
     event.preventDefault();
     const data ={
-        name: nome,
-        min_num: quant,
-        promo_perc: percentual,
-        prod: produto
+        id: localStorage.getItem("fid"),
+        user: nome
     }
-    const response = await api.post("/create/promo", data)
+    const response = await api.post("/family/adduser", data)
     console.log(response)
     setOpen(false);
 

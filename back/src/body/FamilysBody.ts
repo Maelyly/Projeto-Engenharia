@@ -42,11 +42,11 @@ class FamilyBody {
 		return family;
 	}
 
-	async addToFamily(id:string, user:User){
+	async addToFamily(id:string, user:string){
 		//const si = await this.familysRepository.findOne({id:id});
 		console.log("Id family "+id);
 		console.log(user);
-		this.userbody.update(user.user_name,id);	
+		this.userbody.update(user,id);	
 		return user; 
 	}
 

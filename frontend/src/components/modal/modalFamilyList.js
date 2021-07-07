@@ -31,7 +31,10 @@ export default function ModalFamilyL() {
 
 
   async function handleOpen(){
-    const response = await api.post("/family/list")
+    const data ={
+        id : localStorage.getItem("fid")
+    }
+    const response = await api.post("/family/list", data)
     setList(response.data)
     console.log(response)
     setOpen(true);
