@@ -28,6 +28,13 @@ const columns = [
     minWidth: 100 
     
   },
+  { 
+    id: 'value_total_shop', 
+    label: 'preço promoção', 
+    minWidth: 100 
+    
+  },
+
   {
     id: 'date_shop',
     label: 'data',

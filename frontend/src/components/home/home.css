@@ -25,6 +25,17 @@
 .positionPr{
     position: absolute;left: 300px; top: 150px;
 }
+.positionPromo{
+    position: absolute;left: 600px; top: 150px;
+}
+.positionPromoR{
+    position: absolute;left: 900px; top: 150px;
+}
+
+.positionSp{
+    position: absolute;left: 500px; top: 10px;
+}
+
 button {
     color: #002b5c;
     text-align: center;

@@ -29,6 +29,17 @@ class PromoBody {
         return promo
     }
 
+    async remove(nameP: string){
+        const  name  = nameP
+        const pb = new ProductsBody()
+        const pr = await this.promoRepository.findOne({name})
+
+        if(!pr) return false
+        this.promoRepository.remove(pr)
+        
+        return true
+    }
+
     async getPromotionByProduct(prod:Product){
         if(!prod) return false
         try {

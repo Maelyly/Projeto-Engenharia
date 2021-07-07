@@ -5,10 +5,10 @@ import StickyHeadTable from './compra';
 import AuthContext from '../../store/authContext';
 import api from '../../services/api';
 import {Link, useHistory } from "react-router-dom";
-import UserContext from '../Users/user';
 import TransitionsModal from '../modal/modal';
-import TableItem from './table';
-
+import ModalPromotion from '../modal/modalAddPromotion';
+import ModalPromotionR from '../modal/modalRemovePromotion';
+import ModalList from '../modal/modalList';
 
 export default function Home() {
   const austCtx = useContext(AuthContext);
@@ -58,8 +58,9 @@ export default function Home() {
       <button onClick={handlerClick} className= "positionAdd">
         adicionar compra
       </button>
-      
-
+      <ModalList/>
+      <ModalPromotionR/>
+      <ModalPromotion/>
       <TransitionsModal/>
       
     </div>
