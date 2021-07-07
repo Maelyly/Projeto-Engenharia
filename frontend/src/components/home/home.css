@@ -31,7 +31,15 @@
 .positionPromoR{
     position: absolute;left: 900px; top: 150px;
 }
-
+.positionAddF{
+    position: absolute;left: 1300px; top: 50px;
+}
+.positionF{
+    position: absolute;left: 1300px; top: 100px;
+}
+.positionFamilyAdd{
+    position: absolute;left: 1300px; top: 150px;
+}
 .positionSp{
     position: absolute;left: 500px; top: 10px;
 }

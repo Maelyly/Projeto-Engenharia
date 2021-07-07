@@ -4,7 +4,7 @@ import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 import api from '../../services/api';
-import GroupAddIcon from '@material-ui/icons/GroupAdd';
+import PersonAddIcon from '@material-ui/icons/PersonAdd';
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -22,15 +22,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ModalFamilyC() {
+export default function ModalFamilyA() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const [nome, setNome] = useState();
-  const [name_user,setUser] = useState();
-  const [name_user2,setUser2] = useState();
-  const [family,setFamily] = useState([])
-  
-  
+  const [quant, setQuant] = useState();
+  const [percentual, setPercentual] = useState();
+  const [produto,setProduto] = useState();
 
 
   const handleOpen = () => {
@@ -44,32 +42,27 @@ export default function ModalFamilyC() {
     const changeHandlerNome = (event) => {
         setNome(event.target.value);
 }
-    const changeHandlerNome1 = (event) => {
-        setUser(event.target.value);
-}
-    const changeHandlerNome2 = (event) => {
-        setUser2(event.target.value);
+
+    const changeHandlerQtd = (event) => {
+        setQuant(event.target.value);
 }
 
-   
+    const changeHandlerPercentual = (event) => {
+        setPercentual(event.target.value);
+}
+    const changeHandlerProduto = (event) => {
+        setProduto(event.target.value);
+}
+
   async function handleSubmit(event){
     event.preventDefault();
-    const user = {
-        name: name_user
-    }
-    const user2 = {
-        name: name_user2
-    }
-    setFamily([...family,user])
-    setFamily([...family,user2])
-    
     const data ={
         name: nome,
-        user: family
+        min_num: quant,
+        promo_perc: percentual,
+        prod: produto
     }
-    console.log(data)
-    const response = await api.post("/family", data)
-    localStorage.setItem("fid", response.data.id)
+    const response = await api.post("/create/promo", data)
     console.log(response)
     setOpen(false);
 
@@ -79,7 +72,7 @@ export default function ModalFamilyC() {
 
   return (
     <div>
-      <GroupAddIcon fontSize="large" onClick ={handleOpen} className= "positionAddF"/>
+      <PersonAddIcon fontSize="large" className="positionFamilyAdd" onClick={handleOpen}/>
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
@@ -94,22 +87,14 @@ export default function ModalFamilyC() {
       >
         <Fade in={open}>
           <div className={classes.paper}>
-            <h2 id="transition-modal-title">Criar Familia</h2>
+            <h2 id="transition-modal-title">Adicionar Familiar</h2>
             <form onSubmit={handleSubmit}>
                 <label>
-                    <p id="transition-modal-description">Nome da Familia.</p>
+                    <p id="transition-modal-description">Nome de Usuario.</p>
                     <input type= "text" onChange ={changeHandlerNome}></input>
                 </label>
-                <label>
-                    <p id="transition-modal-description">Nome de Usuario.</p>
-                    <input type= "text" onChange ={changeHandlerNome1}></input>
-                </label>
-                <label>
-                    <p id="transition-modal-description">Nome de Usuario.</p>
-                    <input type= "text" onChange ={changeHandlerNome2}></input>
-                </label>
                 <button type="submit">
-                    criar
+                    Adicionar
                 </button>
             </form>
           </div>

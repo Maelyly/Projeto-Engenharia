@@ -39,7 +39,8 @@ export default function LoginForm(){
             console.log('Response:', response.data);
             console.log(response)
         }catch(error){
-            console.error(error)
+            alert("Usuario ou Senha Incorreta")
+            console.log(error)
         }
         
         

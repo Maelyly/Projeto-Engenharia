@@ -47,9 +47,14 @@ export default function RegisterForm(){
             alert('senhas diferentes');
         }
         else{
-            const response = await api.post('create/user', userData);
-            console.log(response);
-            history.replace('/login');
+            try {
+                const response = await api.post('create/user', userData);
+                console.log(response);
+                history.replace('/login');
+            } catch (error) {
+                alert("usuario ja existe")
+            }
+            
             
             
         }

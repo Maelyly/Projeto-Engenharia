@@ -9,6 +9,9 @@ import TransitionsModal from '../modal/modal';
 import ModalPromotion from '../modal/modalAddPromotion';
 import ModalPromotionR from '../modal/modalRemovePromotion';
 import ModalList from '../modal/modalList';
+import ModalFamilyC from '../modal/modalFamily';
+import ModalFamilyL from '../modal/modalFamilyList';
+import ModalFamilyA from '../modal/modalFamilyAdd';
 
 export default function Home() {
   const austCtx = useContext(AuthContext);
@@ -56,8 +59,11 @@ export default function Home() {
     <div>
       
       <button onClick={handlerClick} className= "positionAdd">
-        adicionar compra
+        Adicionar compra
       </button>
+      <ModalFamilyA/>
+      <ModalFamilyL/>
+      <ModalFamilyC/>
       <ModalList/>
       <ModalPromotionR/>
       <ModalPromotion/>

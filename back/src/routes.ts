@@ -7,6 +7,7 @@ import './database';
 import { ShoppingListController } from './controllers/shoppingListController';
 import { ShoppingItemController } from './controllers/shoppingItemController';
 import { PromoController } from './controllers/promoController';
+import { FamilyController } from './controllers/familysController';
 
 const routes = Router();
 
@@ -17,6 +18,8 @@ const productsController = new ProductsController();
 const slc = new ShoppingListController()
 const sic = new ShoppingItemController()
 const pc = new PromoController()
+const shoppingitem = new ShoppingItemController()
+const family = new FamilyController();
 
 routes.get('/', (request, response) => {
 	return response.json({
@@ -49,6 +52,12 @@ routes.get('/promo',pc.list)
 routes.post('/getItem',itemsController.goc)
 routes.post('/removesi',sic.removeById)
 routes.post('/removei',sic.removeItem)
+routes.post('/listbyyear',shoppingitem.listbyyear);
+routes.post('/listbymonth',shoppingitem.listbymonth);
+routes.get('/family',family.list)
+routes.post('/family/list',family.returnfamily)
+routes.post('/family',family.create)
+routes.post('/family/adduser',family.adduser)
 
 
 export { routes };

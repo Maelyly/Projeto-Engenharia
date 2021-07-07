@@ -4,6 +4,8 @@ import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 import api from '../../services/api';
+import GroupIcon from '@material-ui/icons/Group';
+import List from './family';
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -21,16 +23,17 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ModalPromotionR() {
+export default function ModalFamilyL() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const [nome, setNome] = useState();
-  const [quant, setQuant] = useState();
-  const [percentual, setPercentual] = useState();
-  const [produto,setProduto] = useState();
+  const [list,setList] = useState([])
 
 
-  const handleOpen = () => {
+  async function handleOpen(){
+    const response = await api.post("/family/list")
+    setList(response.data)
+    console.log(response)
     setOpen(true);
   };
 
@@ -42,35 +45,11 @@ export default function ModalPromotionR() {
         setNome(event.target.value);
 }
 
-    const changeHandlerQtd = (event) => {
-        setQuant(event.target.value);
-}
-
-    const changeHandlerPercentual = (event) => {
-        setPercentual(event.target.value);
-}
-    const changeHandlerProduto = (event) => {
-        setProduto(event.target.value);
-}
-
-  async function handleSubmit(event){
-    event.preventDefault();
-    const data ={
-        name: nome,
-    }
-    const response = await api.post("/remove/promo", data)
-    console.log(response)
-    setOpen(false);
-
-
-
-  }
+   
 
   return (
     <div>
-      <button className="positionPromoR" type="button" onClick={handleOpen}>
-        Remover Promoção
-      </button>
+      <GroupIcon fontSize="large" onClick ={handleOpen} className= "positionF"/>
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
@@ -85,16 +64,8 @@ export default function ModalPromotionR() {
       >
         <Fade in={open}>
           <div className={classes.paper}>
-            <h2 id="transition-modal-title">Remover Promoção</h2>
-            <form onSubmit={handleSubmit}>
-                <label>
-                    <p id="transition-modal-description">Nome da Promoção.</p>
-                    <input type= "text" onChange ={changeHandlerNome}></input>
-                </label>
-                <button type="submit">
-                    remover
-                </button>
-            </form>
+            <h2 id="transition-modal-title">Familia</h2>
+            {list.map(family => <List nome= {family.name} user_name= {family.user_name} />)}
           </div>
         </Fade>
       </Modal>
