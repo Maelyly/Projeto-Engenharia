@@ -37,6 +37,7 @@ export default function Home() {
       slid: localStorage.getItem('slid')
     }
     const response = await api.post('/si', data)
+    localStorage.setItem('siid', response.data.id)
     console.log(response)
     history.replace('/carrinho')
   }

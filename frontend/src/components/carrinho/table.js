@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useState, useEffect} from 'react';
 import { createMuiTheme, makeStyles, ThemeProvider,withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
@@ -11,30 +11,31 @@ import TableRow from '@material-ui/core/TableRow';
 import api from '../../services/api';
 import Button from "@material-ui/core/Button";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
+import {Link, useHistory } from "react-router-dom";
 
 
 
 const columns = [
-  { id: 'name',
-   label: 'Name',
+  { id:'products',
+    label: 'Name',
     minWidth: 170 ,
     align: 'left',
   },
   { 
-    id: 'quantidade', 
+    id: 'quant', 
     label: 'quantidade', 
     minWidth: 170,
     align: 'left',
   },
   { 
-    id: 'preço', 
+    id: 'total_price', 
     label: 'preço', 
     minWidth: 170 ,
     align: 'left',
     
   },
   {
-    id: 'categoria',
+    id: 'category',
     label: 'categoria',
     minWidth: 100,
     align: 'left',
@@ -105,13 +106,26 @@ export default function StickyHeadTable() {
   const [shop,setShop] = useState([]);
   const [produto,setProduto] = useState();
   const [count, setCount] = useState(0);
+  const history = useHistory();
+
+    async function list(){
+      const id = {
+        id: localStorage.getItem('siid')
+      }
+      const response = await api.post('/loadsi',id)
+      addProduto(response.data.items);
+      
+    } 
+    useEffect(()=> {
+      list()
+    },[])
     
     function changeHandleProduto(event){
         setProduto(event.target.value);
     }
 
     function handleSave(){
-
+      history.replace('/home')
     }
 
     function handleIncrement(event){
@@ -129,34 +143,44 @@ export default function StickyHeadTable() {
     async function handleCLick(event){
         event.preventDefault();
 
-        const data = {
+        const dataP = {
           name : produto,
       }
         if(count > 0){
-          const response = await api.post('/getproducts', data)
+          const response = await api.post('/getproducts', dataP)
           const item ={
             products: response.data.name,
             quant: count
           }
-          const response2 =  await api.post('/items', item)
+          const response2 =  await api.post('/getitem', item)
           console.log(response2)
-          const produtoT = {
-            name : response.data.name,
+
+          const data = {
+            siid: localStorage.getItem('siid'),
+            itemid: response2.data.id, 
+          }
+          try{
+            const response3 = await api.post('/additem',data)
+            console.log(response3)
+          }catch(error){
+            
+          }
+
+          const id = {
+            id: localStorage.getItem('siid')
+          }
+          const response4 = await api.post('/loadsi',id)
+          console.log(response4)
+          var i
+          const listaT = {
+            name : response4.data,
             preço : response.data.price,
             quantidade: count,
             categoria : response.data.category
           }
 
-          const data = {
-            siid: response2.data.id, 
-            itemid: localStorage.getItem('slid')
-          }
-          try{
-            const response3 = await api.post('/additem',data)
-          }catch(error){
-            
-          }
-          addProduto(produtoT);
+         
+          addProduto(response4.data.items);
         }
           else{
             alert('escolha a quantidade');
@@ -168,7 +192,7 @@ export default function StickyHeadTable() {
 
 
   function addProduto(produto){
-    setShop([produto,...shop]);
+    setShop(produto);
   }
    
   const handleChangePage = (event, newPage) => {
@@ -203,7 +227,12 @@ export default function StickyHeadTable() {
               return (
                 <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
                   {columns.map((column) => {
-                    const value = row[column.id];
+                    let value = row[column.id];
+                    if(column.id === "products"){
+                      value = row[column.id].name
+                    }
+                    else if(column.id === "category")
+                      value = row["products"].category
                     return (
                       <TableCell key={column.id} align={column.align}>
                         {column.format && typeof value === 'number' ? column.format(value) : value}
@@ -242,7 +271,7 @@ export default function StickyHeadTable() {
           </ButtonGroup>
     </form>
     <button className='positionSave' onClick={handleSave}>
-            Salvar
+            Home
     </button>
   </div>
 

@@ -9,12 +9,12 @@ class ShoppingItemController {
 	async create(request: Request, response: Response): Promise<Response> {
 		const { editor,slid }: IShoppingItemData = request.body;
 
-		const productsbody = new ShoppingItemBody();
+		const sib = new ShoppingItemBody();
 
-		const product = await productsbody.create({ editor,slid });
+		const product = await sib.create({ editor,slid });
 		if (product){
-			const responseData = cleanProduct(product);
-			return response.json(responseData);
+			//const responseData = cleanProduct(product);
+			return response.json(product);
 		}
 		else{
 			return response
@@ -32,7 +32,7 @@ class ShoppingItemController {
 	async loadSI(request: Request, response: Response): Promise<Response> {
 		let ldata = request.body
 		const slb = new ShoppingItemBody()
-		ldata = ldata.slid
+		ldata = ldata.id
 		let ret = await slb.loadSI(ldata)
 		return response.json(ret)
 	}

@@ -45,5 +45,6 @@ routes.post('/additem', sic.addItem)
 routes.post('/getsl', slc.getList)
 routes.post('/create/promo', pc.create)
 routes.get('/promo',pc.list)
+routes.post('/getItem',itemsController.goc)
 
 export { routes };

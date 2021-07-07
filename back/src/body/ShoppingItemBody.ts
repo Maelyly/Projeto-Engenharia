@@ -44,31 +44,45 @@ class ShoppingItemBody {
 		let vt = 0
 		let vtp = 0
 		const pb = new PromoBody()
-		for(let i of si.items){
-			vt += i.total_price
-			let promo = await pb.getPromotionByProduct(i.products)//O ERRO TA NESSE ID, PRECISA SER ID DO PRODUTO, NAO DO ITEM
-			if (!promo){
-				vtp += i.total_price
-			}else{
-				if(i.quant>=promo.min_num){
-					vtp +=i.total_price*promo.promo_perc
-				}else{
+		try {
+			for(let i of si.items){
+				vt += i.total_price
+				let promo = await pb.getPromotionByProduct(i.products)//O ERRO TA NESSE ID, PRECISA SER ID DO PRODUTO, NAO DO ITEM
+				if (!promo){
 					vtp += i.total_price
+				}else{
+					if(i.quant>=promo.min_num){
+						vtp +=i.total_price*promo.promo_perc
+					}else{
+						vtp += i.total_price
+					}
 				}
 			}
+		} catch (error) {
+			console.log(error)
 		}
+		
+		
 		await this.shoppingItemRepository.update({id:si.id}, {value_total:vt, value_total_shop:vtp})
 	}
 
 	async addItemToSI(id:string, itemId:string){
 		const ib = new ItemsBody()
+
 		const item = await ib.findById(itemId)
+		console.log(item)
 		if(!item) return false
-		await getConnection()
+		try {
+			await getConnection()
 			.createQueryBuilder()
 			.relation(ShoppingItem, "items")
 			.of({id:id})
 			.add(item)
+		} catch (error) {
+			return false
+		}
+		
+		console.log("chegou aqui")
 		await this.update(id)
 		return true
 	}
@@ -84,14 +98,17 @@ class ShoppingItemBody {
 	}
 
 	async loadSI(id:string){
-		console.log(id)
-		const ret = await getConnection()
+		console.log(`console log id ${id}`)
+		/*const ret = await getConnection()
 		.createQueryBuilder()
 		.relation(ShoppingItem, "items")
 		.of({id})
 		.loadMany() 
 		console.log(ret)
+		*/
+		const ret = await this.shoppingItemRepository.findOne({id},{relations: ["items","items.products"] })
 		return ret
+		
 	}
 
 

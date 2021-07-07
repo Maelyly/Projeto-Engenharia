@@ -13,8 +13,8 @@ class ItemsController {
 		console.log(products)
 		const item = await itemsbody.create({products,quant});
 		if (item){
-			const responseData = cleanItem(item);
-			return response.json(responseData);
+			//const responseData = cleanItem(item);
+			return response.json(item);
 		}
 		else{
 			return response
@@ -27,6 +27,15 @@ class ItemsController {
 	async list(request: Request, response: Response): Promise<Response>{
 		const itemsbody = new ItemsBody();
 		return response.json(await itemsbody.listItems());
+	}
+
+	async goc(request: Request, response: Response): Promise<Response>{
+		const {products,quant}: IItemData = request.body;
+
+		const itemsbody = new ItemsBody();
+		const ret = await itemsbody.getOrCreate(products,quant)
+		return response.json(ret)
+
 	}
 
 	

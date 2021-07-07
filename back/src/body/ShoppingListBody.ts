@@ -91,7 +91,7 @@ class ShoppingListBody {
 		this.shoppingListRepository.update({id:sl.id}, {total_expenses:vt})
 	}
 
-	async getList(token: string){
+	/*async getList(token: string){
         const ab = new AuthBody()
         let user = await ab.checkToken(token)
         user = user.user_name
@@ -101,6 +101,21 @@ class ShoppingListBody {
         const ub = new UsersBody()
         const objuser = await ub.findByUser_name(user)
         return await this.shoppingListRepository.findOne({owner:objuser},{relations:["shoppingitems"]})
+    }*/
+
+	async getList(token: string){
+        const ab = new AuthBody()
+        let user = await ab.checkToken(token)
+        user = user.user_name
+		const ub = new UsersBody()
+        const objuser = await ub.findByUser_name(user)
+		const sl = await this.shoppingListRepository.findOne({owner:objuser},{relations:["shoppingitems"]})
+        if (!sl){
+			await this.create({ owner: user})
+			return await this.shoppingListRepository.findOne({owner:objuser},{relations:["shoppingitems"]})
+        }
+       return sl
     }
+
 }
 export { ShoppingListBody };

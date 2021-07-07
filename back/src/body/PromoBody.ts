@@ -31,8 +31,14 @@ class PromoBody {
 
     async getPromotionByProduct(prod:Product){
         if(!prod) return false
-        const promotion = await this.promoRepository.findOne({prod})
-        return promotion
+        try {
+            const promotion = await this.promoRepository.findOne({prod},{relations: ["prod"]})
+            return promotion
+        } catch (error) {
+            console.log(error)
+        }
+        
+        
     }
 
 

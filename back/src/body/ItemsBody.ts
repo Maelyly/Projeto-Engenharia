@@ -51,6 +51,26 @@ class ItemsBody {
 	async findByProductName(productname: string) {
 		return this.productsRepository.findOne(productname);
 	}
+
+	async getOrCreate(productname: string, quant: number){
+		const pb = new ProductsBody()
+		const product = await pb.findByProductName(productname)
+		let item = await this.findByItem(product, quant)
+		const data ={
+			products: productname,
+			quant: quant
+		}
+		if(!item){  
+			let tItem = await this.create(data)
+			return tItem
+			
+		}
+		else{
+			return item
+		}
+		
+
+	}
 }
 
 export { ItemsBody };
