@@ -19,23 +19,23 @@ class FamilyBody {
 	
 
 	async create(familyData: IFamilyData) {
-		const {  name,user } = familyData;
+		const {  name } = familyData;
 
 		const familyExists = await this.findByName(name);
-		let p;
-		 user.forEach(element => {
+		//let p;
+		 /*user.forEach(element => {
 			if(!this.findByUser(element.name)){
 				p=false;
 				return;
 			}
 			p = true;});
 
-        if(!p) return false
+        if(!p) return false*/
 
 		if (familyExists) return false;
 		
 
-		const family = this.familysRepository.create({name,user});
+		const family = this.familysRepository.create({name});
 
 		await this.familysRepository.save(family);
 
